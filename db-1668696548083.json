@@ -1,0 +1,104 @@
+{
+  "category": [
+    {
+      "name": "PAL process and Dashboard",
+      "id": 1
+    },
+    {
+      "name": "Timesheet",
+      "id": 2
+    },
+    {
+      "name": "Reimbursement",
+      "id": 3
+    },
+    {
+      "name": "Respective DLs",
+      "id": 4
+    },
+    {
+      "name": "Project related queries",
+      "id": 5
+    },
+    {
+      "name": "Installations-approval",
+      "id": 6
+    },
+    {
+      "name": "Free courses",
+      "id": 7
+    },
+    {
+      "name": "OES related queries",
+      "id": 8
+    }
+  ],
+  "queries": [
+    {
+      "categoryId": 1,
+      "question": "What is PAL",
+      "answer": "Personalized Accelerated Learning",
+      "id": 1
+    },
+    {
+      "categoryId": 1,
+      "question": "Whom is it for",
+      "answer": "it is for cybage resource",
+      "id": 2
+    },
+    {
+      "categoryId": 2,
+      "question": "Who will approve my timesheet",
+      "answer": "it is for cybage resource",
+      "id": 3
+    },
+    {
+      "categoryId": 3,
+      "question": "How to apply for reimbursement?",
+      "answer": "after completion of course on PAL Dashboard",
+      "id": 4
+    },
+    {
+      "categoryId": 4,
+      "question": "ES+ related queries",
+      "answer": "ESplusadmin@cybage.com",
+      "id": 5
+    },
+    {
+      "categoryId": 6,
+      "question": "I need few installations to practice, Can I do it on my base machine?",
+      "answer": "all tools are available in Utility shared folder ,you cn install from there",
+      "id": 6
+    },
+    {
+      "categoryId": 7,
+      "question": "How to watch courses on YouTube without access?",
+      "answer": "No,You can't use Youtube without access",
+      "id": 7
+    },
+    {
+      "categoryId": 7,
+      "question": "I need few installations to practice, Can I do it on my base machine?",
+      "answer": "all tools are available in Utility shared folder ,you cn install from there",
+      "id": 8
+    },
+    {
+      "categoryId": 8,
+      "question": "Unable to start the exam even after clicking it",
+      "answer": "contact Training Team",
+      "id": 9
+    },
+    {
+      "categoryId": 8,
+      "question": "Have not received the test mail",
+      "answer": "contact Training Team",
+      "id": 10
+    }
+  ],
+  "admin": [
+    {
+      "username": "rheav@cybage.com",
+      "password": "cybage@123"
+    }
+  ]
+}

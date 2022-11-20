@@ -5,10 +5,10 @@
  */
 let jsondata = "";
 let category = "";
-let categories_List = document.getElementById('categories-list')
+let categories_List = document.getElementById('categories-list');
+let reply_list = document.getElementById('cat-reply');
 
 let fetch_Category = "http://localhost:3000/category"
-// let fetch_Questions = `http://localhost:3000/queries/${categoryId}`
 
 
 
@@ -25,7 +25,7 @@ async function getCatQuestions(id) {
 }
 
 
-function createCatList(category) {
+async function createCatList(category) {
     category.map((cat) => {
         let newCat = document.createElement("a");
         newCat.href = "#"
@@ -33,9 +33,30 @@ function createCatList(category) {
         newCat.id = `cat-item-${cat.id}`
         newCat.innerHTML = `${cat.name}`;
         newCat.setAttribute('data-id', `${cat.id}`);
-        // console.log(newCat);
+        console.log(newCat);
         categories_List.appendChild(newCat);
     })
+}
+
+
+const anchorPressed = async (e) => {
+    let tagId = e.target.id; // Get ID of Clicked Element;
+    let text = e.target.innerHTML; // Get innerText of Clicked Element;
+    console.log(tagId);
+    let id = e.currentTarget.getAttribute('data-id')
+    console.log(`id of cat-list-${id}`);
+    let cat_questions = await getCatQuestions(id);
+    console.log(cat_questions);
+
+    let newReply = document.createElement("a");
+    console.log(newReply, reply_list);
+    newReply.href = "#"
+    newReply.classList.add("list-group-item", "list-group-item-action", "reply-list-item");
+    newReply.innerHTML = text;
+    reply_list.appendChild(newReply);
+
+
+
 }
 
 async function main() {
@@ -46,14 +67,6 @@ async function main() {
 
 
     let anchors = document.getElementsByTagName("a");
-
-    const anchorPressed = async (e) => {
-        console.log(e.target.id);  // Get ID of Clicked Element
-        let id = e.currentTarget.getAttribute('data-id')
-        console.log(`id of cat-list-${id}`);
-        let cat_questions = await getCatQuestions(id);
-        console.log(cat_questions);
-    }
 
     for (let anchor of anchors) {
         anchor.addEventListener("click", anchorPressed);
