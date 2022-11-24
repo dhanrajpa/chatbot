@@ -25,10 +25,12 @@
     <section class="content"></section>
     <div class="chatbox" id="chat-menu">
         <div class="chatbox__support" id="Bot-Box">
+
             <div class="chatbox__header">
                 <img id="imgCybageLogo" title="cybageLogo" src="../Images/cybageLogoWhite.png" alt="cybageLogo"
                     style="border-width:0px;">
             </div>
+
             <div class="message">
                 <div id="message-item">
                     <div class="messages__item--visitor">
@@ -42,6 +44,8 @@
                     </div>
                 </div>
             </div>
+            <!-- start -->
+            <!-- initial fetch categories -->
             <div class="chatbox__messages">
                 <div class="col-8">
                     <div class="list-group row categories-list" id="categories-list">
@@ -50,20 +54,22 @@
                 </div>
             </div>
 
+            <!-- reply message -->
             <div class="reply__messages">
                 <div class="col-8 reply__messages__box">
-                    <div class="list-group row cat-reply" id="cat-reply">
+                    <div class="list-group row  cat-reply" id="cat-reply">
                     </div>
                 </div>
             </div>
 
+            <!-- tag message -->
             <div class="message">
                 <div id="tag-item">
-                    <!-- <div class="messages__item--operator" id="tag-questions">
-                        please select from below mentioned
-                    </div> -->
+
                 </div>
             </div>
+
+            <!-- question-list -->
             <div class="chatbox__messages">
                 <div class="col-8">
                     <div class="list-group row questions-list" id="question-list">
@@ -71,9 +77,19 @@
                     </div>
                 </div>
             </div>
-            <div class="chatbox__footer">
-                <input type="text" placeholder="Write a message">
+
+            <div class="chatbox__messages">
+                <div class="col-8">
+                    <div class="list-group row answer-list" id="answer">
+
+                    </div>
+                </div>
             </div>
+            <!-- end -->
+            <!-- user input -->
+            <!-- <div class="chatbox__footer">
+                <input type="text" placeholder="Write a message">
+            </div> -->
         </div>
         <div class="chatbox__button">
             <button>I'm a button!</button>
