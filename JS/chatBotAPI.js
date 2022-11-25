@@ -1,6 +1,6 @@
 /**
  * * category,Question API Fetch
- * TODO dynamic jtml cxreation for reply and menu
+ * TODO 
  * ? need to add api for answerss
  * 
  */
@@ -9,7 +9,7 @@ let category = "";
 let catId;
 let CatQuestId;
 let cat_questions;
-let chatBody = document.getElementById('Bot-Box')
+// let chatBody = document.getElementById('Bot-Box')
 let categories_List = document.getElementById('categories-list');
 let question_list = document.getElementById('question-list');
 let reply_list = document.getElementById('cat-reply');
@@ -36,12 +36,10 @@ const getCatQuestions = async (id) => {
 }
 //end
 
-
-
 //create category list
 const createCatList = async (category) => {
-
-    let catDiv1 = document.createElement("a");
+    catTag()
+    let catDiv1 = document.createElement("div");
     catDiv1.id = "categories-list";
     catDiv1.classList.add("list-group", "row", "categories-list");
 
@@ -65,7 +63,7 @@ const createCatList = async (category) => {
     catDiv3.classList.add("chatbox__messages");
     catDiv3.id = "cat";
     catDiv3.appendChild(catDiv2);
-
+    console.log(catDiv3);
     botBox.appendChild(catDiv3)
 }
 
@@ -98,16 +96,14 @@ async function createCatQuesList(cat_question) {
     botBox.appendChild(questDiv3)
 }
 
-
-// create tag elements
 async function createAnswerElem(answerText) {
 
     let newCat = document.createElement("a");
     newCat.href = "#";
     newCat.classList.add("list-group-item", "list-group-item-action", "answer-list-item");
-    newCat.id = `answer-item-${catId.id}`;
+    newCat.id = `answer-item-${CatQuestId}`;
     newCat.innerHTML = `${answerText}`;
-    newCat.setAttribute('data-id', `${1}`);
+    newCat.setAttribute('data-id', `${CatQuestId}`);
     console.log(newCat);
 
     let ansDiv1 = document.createElement("div");
@@ -125,9 +121,61 @@ async function createAnswerElem(answerText) {
     ansDiv3.appendChild(ansDiv2)
 
     botBox.appendChild(ansDiv3)
+
+    // selectMenu()
+
     answerTag();
 }
 
+const queryWrite = (e) => {
+
+    console.log("into write query");
+    e.target.onclick = false
+}
+
+const feedbackMenu = async () => {
+    //remove previous buttons element  
+
+    let feedback_btn_No = document.getElementById("feedback-btn-menu")
+    feedback_btn_No.onclick = false
+    let feedback_btn_Yes = document.getElementById("feedback-btn-share")
+    feedback_btn_Yes.onclick = false
+    feedback_btn_Yes.remove();
+    feedback_btn_No.remove();
+
+    // add new button elements 
+    let div2 = document.getElementById("feedback-btn")
+
+    let feedback_no_menu = document.createElement("button");
+    feedback_no_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_no_menu.id = `feedback-btn-select-menu`;
+    feedback_no_menu.innerHTML = "Go to Menu";
+
+    let feedback_no_query = document.createElement("button");
+    feedback_no_query.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_no_query.id = `feedback-btn-query`;
+    feedback_no_query.innerHTML = "Write Your Query";
+    div2.appendChild(feedback_no_menu);
+    div2.appendChild(feedback_no_query);
+
+
+    feedback_no_menu.onclick = () => { console.log("hello menu") }
+
+    feedback_no_query.onclick = queryWrite
+    // feedback_no_query.onclick = (feedback_no_query) => {
+    //     console.log("hello query");
+    //     feedback_no_query.onclick = false
+    // }
+
+    // createCatList(category)
+
+
+
+    // console.log(menuDiv3);
+    // console.log(botBox);
+}
+
+// create tag elements
 const questionTag = () => {
     let div = document.createElement("div");
     div.classList.add("messages__item--operator");
@@ -144,12 +192,11 @@ const questionTag = () => {
 
     botBox.appendChild(message);
 }
-
-const answerTag = () => {
+const catTag = () => {
     let div = document.createElement("div");
     div.classList.add("messages__item--operator");
     div.id = "tag-questions";
-    div.innerHTML = "Is Query resloved?";
+    div.innerHTML = "Please choose your query from below Category";
 
     let messageItem = document.createElement("div");
     messageItem.id = "tag-item";
@@ -160,9 +207,50 @@ const answerTag = () => {
     message.appendChild(messageItem);
 
     botBox.appendChild(message);
+}
+
+const answerTag = () => {
+
+    let div1 = document.createElement("div");
+    div1.classList.add("messages__item--operator");
+    div1.id = "tag-questions";
+    div1.innerHTML = "Is Query resolved?";
+
+    let div2 = document.createElement("div");
+    div2.classList.add("feedback");
+    div2.id = "feedback-btn";
+
+    let feedback_btn = document.createElement("button");
+    feedback_btn.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_btn.id = `feedback-btn-share`
+    feedback_btn.innerHTML = "yes";
+
+    let feedback_btn_menu = document.createElement("button");
+    feedback_btn_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_btn_menu.id = `feedback-btn-menu`;
+    feedback_btn_menu.innerHTML = "No";
+    feedback_btn_menu.onclick = feedbackMenu
+
+    div2.appendChild(feedback_btn);
+    div2.appendChild(feedback_btn_menu);
+
+    let messageItem = document.createElement("div");
+    messageItem.id = "tag-item";
+
+    messageItem.appendChild(div1);
+    messageItem.appendChild(div2);
+
+    console.log(messageItem);
+    let message = document.createElement("div");
+    message.classList.add("message");
+    message.id = "feedback-mesg"
+
+    message.appendChild(messageItem);
+    botBox.appendChild(message);
 
 
 }
+//end
 
 // reply element created
 const replyElem = (text) => {
@@ -173,7 +261,6 @@ const replyElem = (text) => {
     newReply.classList.add("list-group-item", "list-group-item-action", "reply-list-item");
     newReply.innerHTML = text;
 
-
     let replyDiv = document.createElement("div");
     replyDiv.classList.add("list-group", "row", "cat-reply");
     replyDiv.appendChild(newReply);
@@ -182,19 +269,12 @@ const replyElem = (text) => {
     replyDiv2.classList.add("col-8", "reply__messages__box");
     replyDiv2.appendChild(replyDiv);
 
-
     let replyDiv3 = document.createElement("div");
     replyDiv3.classList.add("reply__messages");
     replyDiv.id = "cat-replyy";
     replyDiv3.appendChild(replyDiv2);
 
     botBox.appendChild(replyDiv3)
-
-
-
-
-
-
 }
 
 const anchorPressed = async (e) => {
@@ -220,7 +300,6 @@ const anchorPressed = async (e) => {
     createCatQuesList(cat_questions);
 
 }
-
 
 const answerList = async (e) => {
 
@@ -258,7 +337,7 @@ async function main() {
     console.log(category);
     createCatList(category);
 
-
+    console.log("hello");
 
 }
 

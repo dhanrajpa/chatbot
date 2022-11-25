@@ -134,11 +134,45 @@
     }
 }
 
+.answer-list {
+    margin: 0.5rem 0 0 1rem;
+
+    .answer-list-item {
+        padding: 0.3rem;
+        text-align: center;
+        width: 70%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        margin-top: 0.6rem;
+    }
+}
 
 ///tag
-#tag-questions {
-    text-align: center;
-    margin-top: 1rem;
+
+
+//feedback
+#tag-item {
+
+    #tag-questions {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .feedback {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.0;
+        width: 60%;
+        margin: auto;
+        text-align: center;
+
+        .btn {
+            border-radius: 0.8rem;
+            margin-top: 0.25rem;
+            font-size: 11px !important;
+            line-height: 0.8;
+            background-color: rgb(24, 61, 126);
+        }
+    }
 }
 
 /* FOOTER */

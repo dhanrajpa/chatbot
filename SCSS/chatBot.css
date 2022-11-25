@@ -8,29 +8,22 @@
 
 /* CONTENT IS CLOSE */
 .chatbox__support {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   background: #ffffff;
   width: 60vh;
-  border: 4px solid #183d7e;
+  border: 4px solid rgb(24, 61, 126);
   border-bottom: 4px solid #ffffff;
   z-index: -123456;
   border-style: ridge;
   padding: 0;
   opacity: 0;
-  -webkit-transition: all .09s ease-in-out;
-  transition: all .09s ease-in-out;
+  transition: all 0.09s ease-in-out;
 }
 
 /* CONTENT ISOPEN */
 .chatbox--active {
-  -webkit-transform: translateY(-40px);
-          transform: translateY(-40px);
+  transform: translateY(-40px);
   z-index: 123456;
   opacity: 1;
 }
@@ -43,14 +36,10 @@
 /* HEADER */
 .chatbox__header {
   top: 0;
-  border-left: 1px solid #183d7e;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  border-left: 1px solid rgb(24, 61, 126);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #183d7e;
+  justify-content: center;
+  background-color: rgb(24, 61, 126);
   padding: 1.25rem 0 1.25rem 0;
 }
 
@@ -74,7 +63,6 @@
   margin-top: 1rem;
   font-size: 14px;
 }
-
 .reply__messages .reply__messages__box {
   float: right;
 }
@@ -100,46 +88,66 @@
 #categories-list {
   margin: 0.5rem 0 0 1rem;
 }
-
 #categories-list .categories-list-item {
   padding: 0.3rem;
   text-align: center;
   width: 70%;
-  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-top: 0.6rem;
 }
 
 .cat-reply {
   padding: auto;
 }
-
 .cat-reply .reply-list-item {
   padding: 0.3rem;
   text-align: center;
   width: 70%;
   margin-top: 0.6rem;
-  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: 4rem;
 }
 
 #question-list {
   margin: 0.5rem 0 0 1rem;
 }
-
 #question-list .question-list-item {
   padding: 0.3rem;
   text-align: center;
   width: 70%;
-  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-top: 0.6rem;
 }
 
-#tag-questions {
+.answer-list {
+  margin: 0.5rem 0 0 1rem;
+}
+.answer-list .answer-list-item {
+  padding: 0.3rem;
+  text-align: center;
+  width: 70%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-top: 0.6rem;
+}
+
+#tag-item #tag-questions {
   text-align: center;
   margin-top: 1rem;
+}
+#tag-item .feedback {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+#tag-item .feedback .btn {
+  border-radius: 0.8rem;
+  margin-top: 0.25rem;
+  font-size: 11px !important;
+  line-height: 0.8;
+  background-color: rgb(24, 61, 126);
 }
 
 /* FOOTER */
@@ -147,35 +155,28 @@
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding-top: 1rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 4px solid #183d7e;
+  justify-content: center;
+  border: 4px solid rgb(24, 61, 126);
   border-bottom: none;
   border-left: none;
   border-right: none;
 }
-
 .chatbox__footer input {
   width: 100%;
   padding: 0;
   border: none;
 }
-
 .chatbox__footer input::-moz-selection {
   border: none;
 }
-
 .chatbox__footer input::selection {
   border: none;
 }
 
 .content {
   height: 100vh;
-  background-color: #7d9393;
+  background-color: rgb(125, 147, 147);
 }
 /*# sourceMappingURL=chatBot.css.map */
