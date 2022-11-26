@@ -97,6 +97,9 @@
   font-size: 11px !important;
   line-height: 0.8;
   color: #ffffff;
+  width: 50% !important;
+  place-self: centre;
+  margin-left: 1.6rem;
   background-color: rgb(24, 61, 126);
 }
 #categories-list .categories-list-item {

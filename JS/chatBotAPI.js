@@ -1,9 +1,9 @@
 /**
- * * category,Question API Fetch
- * TODO 
- * ? need to add api for answerss
- * 
+ * @param {counter} store count  
+ * @param {categoryId} category id  
+ * *API's created 
  */
+
 let jsondata = "";
 let category = "";
 let catId;
@@ -16,11 +16,7 @@ let answer_list = document.getElementById("answer")
 let botBox = document.getElementById("Bot-Box")
 let fetch_Category = "http://localhost:3000/category"
 let newQuery = "http://localhost:3000/NewQuries"
-/**
- * 
- * @param {categoryId} category id  
- * *API created 
- */
+
 // get categories
 const getCateg = async (url) => {
     let response = await fetch(url);
@@ -35,6 +31,37 @@ const getCatQuestions = async (id) => {
     return data;
 }
 //end
+//counter API
+const getCounter = async (id) => {
+    let response = await fetch(`http://localhost:3000/category/${id}`);
+    let data = await response.json()
+    let count = data['counter'];
+    console.log("counter ", count);
+    return count;
+}
+
+const addCatCounter = async (id) => {
+
+    let url = `http://localhost:3000/category/${id}`
+
+    let count = await getCounter(id)
+    const postData = {
+        counter: ++count,
+    };
+    // Post Query API
+    const res = await fetch(url,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
+        })
+    const data = await res.json();
+    console.log(data);
+}
+
+//end
 const showMoreCat = (e) => {
     console.log("into hsow more cat");
     const hiddenItems = document.querySelectorAll('.hidden-item');
@@ -42,6 +69,8 @@ const showMoreCat = (e) => {
     e.target.onclick = false
     document.querySelector(".show-more-button").remove()
 }
+
+
 //create category list
 const createCatList = async (category) => {
     catTag()
@@ -91,7 +120,6 @@ const createCatList = async (category) => {
     console.log(catDiv3);
     botBox.appendChild(catDiv3)
 }
-
 //question list 
 async function createCatQuesList(cat_question) {
     questionTag();
@@ -367,6 +395,12 @@ const answerTag = () => {
 // reply element created
 const replyElem = (text) => {
 
+    let showMoreElem = document.querySelector(".show-more-button")
+
+    if (showMoreElem) {
+        showMoreElem.remove();
+    }
+
     let newReply = document.createElement("a");
     newReply.href = "#";
     newReply.id = "mesg-reply";
@@ -389,12 +423,13 @@ const replyElem = (text) => {
     botBox.appendChild(replyDiv3)
 }
 
-//question List
+//response question List
 const anchorPressed = async (e) => {
     let tagId = e.target.id; // Get ID of Clicked Element;
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
     console.log(tagId);
     catId = e.currentTarget.getAttribute('data-id');
+    addCatCounter(catId);
     console.log(`id of cat-list-${catId}`);
     replyElem(text);
 
@@ -413,7 +448,8 @@ const anchorPressed = async (e) => {
     createCatQuesList(cat_questions);
 
 }
-//answer
+
+//response answer
 const answerList = async (e) => {
 
     let tagQuesId = e.target.id; // Get ID of Clicked Element;
@@ -454,7 +490,6 @@ async function main() {
 
     createCatList(category);
 
-    // console.log("hello");
 
 }
 
