@@ -9,13 +9,13 @@ let category = "";
 let catId;
 let CatQuestId;
 let cat_questions;
-// let chatBody = document.getElementById('Bot-Box')
 let categories_List = document.getElementById('categories-list');
 let question_list = document.getElementById('question-list');
 let reply_list = document.getElementById('cat-reply');
 let answer_list = document.getElementById("answer")
 let botBox = document.getElementById("Bot-Box")
 let fetch_Category = "http://localhost:3000/category"
+let newQuery = "http://localhost:3000/newQueries"
 /**
  * 
  * @param {categoryId} category id  
@@ -127,15 +127,88 @@ async function createAnswerElem(answerText) {
     answerTag();
 }
 
-const queryWrite = (e) => {
+const postQuery = async (e) => {
+    e.preventDefault();
+    console.log(newQuery);
+    let input = document.getElementById("queryText").value;
+    const postData = {
+        query: input,
+    };
+    console.log(input);
 
-    console.log("into write query");
+    const res = await fetch(newQuery,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
+        })
+    const data = await res.json();
+    console.log(data);
     e.target.onclick = false
+    document.getElementById("query-msg-tag").remove()
+    document.getElementById("write-query").remove()
+    LastMessage()
+        
+}
+
+const LastMessage = () => {
+    let div = document.createElement("div");
+    div.classList.add("messages__item--operator");
+    div.id = "tag-questions";
+    div.innerHTML = "Thanks for writing to us. We will get back to you , incase iff your query doesn't get answered pl reach out to xxxxx@cybage.com";
+
+    let messageItem = document.createElement("div");
+    messageItem.id = "tag-item";
+    messageItem.appendChild(div);
+
+    let message = document.createElement("div");
+    message.classList.add("message");
+    message.id = "last-msg-tag"
+    message.appendChild(messageItem);
+    console.log(message);
+    botBox.appendChild(message);
+}
+
+const queryWrite = (e) => {
+    // remove feedback
+    queryTag();
+
+    let feedBack = document.getElementById("feedback-mesg")
+    feedBack.remove()
+
+    let div = document.createElement("div");
+    div.classList.add("chatbox__footer");
+    div.id = "write-query"
+    botBox.appendChild(div)
+
+    let input = document.createElement("input");
+    input.id = "queryText"
+    input.setAttribute("type", "text")
+
+    input.setAttribute("placeholder", "write your query")
+
+    let btn_Query = document.createElement("button")
+    btn_Query.classList.add("btn", "btn-sm")
+    btn_Query.setAttribute("type", "button")
+    btn_Query.innerHTML = "Send"
+    div.appendChild(input)
+    div.appendChild(btn_Query)
+
+    e.target.onclick = false
+    btn_Query.onclick = postQuery;
+
+
+
 }
 
 const feedbackMenu = async () => {
-    //remove previous buttons element  
+    //remove tag feedback
+    let div1 = document.getElementById("tag-feedback")
+    div1.remove();
 
+    //remove previous buttons element  
     let feedback_btn_No = document.getElementById("feedback-btn-menu")
     feedback_btn_No.onclick = false
     let feedback_btn_Yes = document.getElementById("feedback-btn-share")
@@ -158,21 +231,11 @@ const feedbackMenu = async () => {
     div2.appendChild(feedback_no_menu);
     div2.appendChild(feedback_no_query);
 
-
-    feedback_no_menu.onclick = () => { console.log("hello menu") }
-
-    feedback_no_query.onclick = queryWrite
-    // feedback_no_query.onclick = (feedback_no_query) => {
-    //     console.log("hello query");
-    //     feedback_no_query.onclick = false
-    // }
-
-    // createCatList(category)
-
-
-
-    // console.log(menuDiv3);
-    // console.log(botBox);
+    feedback_no_menu.onclick = () => {
+        console.log("hello menu");
+        createCatList(category);
+    }
+    feedback_no_query.onclick = queryWrite;
 }
 
 // create tag elements
@@ -192,6 +255,25 @@ const questionTag = () => {
 
     botBox.appendChild(message);
 }
+
+const queryTag = () => {
+    let div = document.createElement("div");
+    div.classList.add("messages__item--operator");
+    div.id = "tag-questions";
+    div.innerHTML = "Write your query to us";
+
+    let messageItem = document.createElement("div");
+    messageItem.id = "tag-item";
+    messageItem.appendChild(div);
+
+    let message = document.createElement("div");
+    message.classList.add("message");
+    message.id = "query-msg-tag"
+    message.appendChild(messageItem);
+
+    botBox.appendChild(message);
+}
+
 const catTag = () => {
     let div = document.createElement("div");
     div.classList.add("messages__item--operator");
@@ -213,7 +295,7 @@ const answerTag = () => {
 
     let div1 = document.createElement("div");
     div1.classList.add("messages__item--operator");
-    div1.id = "tag-questions";
+    div1.id = "tag-feedback";
     div1.innerHTML = "Is Query resolved?";
 
     let div2 = document.createElement("div");
@@ -250,6 +332,7 @@ const answerTag = () => {
 
 
 }
+
 //end
 
 // reply element created

@@ -158,21 +158,42 @@
   display: flex;
   padding-top: 1rem;
   justify-content: center;
-  border: 4px solid rgb(24, 61, 126);
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
 }
 .chatbox__footer input {
-  width: 100%;
+  width: 80%;
   padding: 0;
-  border: none;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgb(24, 61, 126);
+  align-self: center;
+  font-size: 11px;
 }
 .chatbox__footer input::-moz-selection {
   border: none;
 }
 .chatbox__footer input::selection {
   border: none;
+}
+.chatbox__footer input input[type=text] {
+  font-size: 11px;
+}
+.chatbox__footer input::-moz-placeholder {
+  overflow: visible;
+  font-size: 11px;
+  align-self: center;
+}
+.chatbox__footer input::placeholder {
+  overflow: visible;
+  font-size: 11px;
+  align-self: center;
+}
+.chatbox__footer button {
+  margin-left: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgb(24, 61, 126);
+  cursor: pointer;
+  font-size: 11px;
+  color: #ffffff;
 }
 
 .content {
