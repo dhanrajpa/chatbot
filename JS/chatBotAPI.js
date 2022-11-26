@@ -6,6 +6,7 @@
 
 let jsondata = "";
 let category = "";
+let arrayName // url api 
 let catId;
 let CatQuestId;
 let cat_questions;
@@ -31,23 +32,26 @@ const getCatQuestions = async (id) => {
     return data;
 }
 //end
-//counter API
-const getCounter = async (id) => {
-    let response = await fetch(`http://localhost:3000/category/${id}`);
+
+//counter Cat and queries  API
+const getCounter = async (arrayName, id) => {
+    let response = await fetch(`http://localhost:3000/${arrayName}/${id}`);
     let data = await response.json()
     let count = data['counter'];
     console.log("counter ", count);
     return count;
 }
 
-const addCatCounter = async (id) => {
+const addCounter = async (id, arrayName) => {
 
-    let url = `http://localhost:3000/category/${id}`
+    let url = `http://localhost:3000/${arrayName}/${id}`
 
-    let count = await getCounter(id)
+    let count = await getCounter(arrayName, id)
+
     const postData = {
         counter: ++count,
     };
+
     // Post Query API
     const res = await fetch(url,
         {
@@ -60,16 +64,14 @@ const addCatCounter = async (id) => {
     const data = await res.json();
     console.log(data);
 }
-
 //end
+
 const showMoreCat = (e) => {
-    console.log("into hsow more cat");
     const hiddenItems = document.querySelectorAll('.hidden-item');
     hiddenItems.forEach(item => item.classList.toggle('hidden'));
     e.target.onclick = false
     document.querySelector(".show-more-button").remove()
 }
-
 
 //create category list
 const createCatList = async (category) => {
@@ -150,7 +152,8 @@ async function createCatQuesList(cat_question) {
 }
 //Answer Element
 async function createAnswerElem(answerText) {
-
+    arrayName = `queries`
+    addCounter(CatQuestId, arrayName);
     let newCat = document.createElement("a");
     newCat.href = "#";
     newCat.classList.add("list-group-item", "list-group-item-action", "answer-list-item");
@@ -429,7 +432,8 @@ const anchorPressed = async (e) => {
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
     console.log(tagId);
     catId = e.currentTarget.getAttribute('data-id');
-    addCatCounter(catId);
+    arrayName = `category`;
+    addCounter(catId, arrayName)
     console.log(`id of cat-list-${catId}`);
     replyElem(text);
 
@@ -492,16 +496,6 @@ async function main() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 main();
 
