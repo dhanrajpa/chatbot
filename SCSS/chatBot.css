@@ -17,6 +17,8 @@
   z-index: -123456;
   border-style: ridge;
   padding: 0;
+  height: 24rem;
+  overflow-y: scroll;
   opacity: 0;
   transition: all 0.09s ease-in-out;
 }
@@ -56,7 +58,7 @@
   margin-top: 1rem;
   float: right;
   margin-bottom: 1rem;
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .reply__messages {

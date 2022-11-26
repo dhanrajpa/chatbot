@@ -17,8 +17,8 @@
     z-index: -123456;
     border-style: ridge;
     padding: 0;
-    // height: 64rem;
-    // overflow-y: scroll;
+    height: 24rem;
+    overflow-y: scroll;
     opacity: 0;
     transition: all .09s ease-in-out;
 }
@@ -60,12 +60,10 @@
 
 .chatbox__messages {
     margin-top: 1rem;
-    // display: flex;
     float: right;
     margin-bottom: 1rem;
     // flex-direction: column;
-    // overflow-y: scroll;
-    font-size: 14px;
+    font-size: 11px;
     // flex-direction: column-reverse;
 }
 

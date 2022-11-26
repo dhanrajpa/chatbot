@@ -10,11 +10,13 @@ let arrayName // url api
 let catId;
 let CatQuestId;
 let cat_questions;
+
 let categories_List = document.getElementById('categories-list');
 let question_list = document.getElementById('question-list');
 let reply_list = document.getElementById('cat-reply');
 let answer_list = document.getElementById("answer")
 let botBox = document.getElementById("Bot-Box")
+
 let fetch_Category = "http://localhost:3000/category"
 let newQuery = "http://localhost:3000/NewQuries"
 
@@ -38,7 +40,6 @@ const getCounter = async (arrayName, id) => {
     let response = await fetch(`http://localhost:3000/${arrayName}/${id}`);
     let data = await response.json()
     let count = data['counter'];
-    console.log("counter ", count);
     return count;
 }
 
@@ -62,7 +63,6 @@ const addCounter = async (id, arrayName) => {
             body: JSON.stringify(postData)
         })
     const data = await res.json();
-    console.log(data);
 }
 //end
 
@@ -97,7 +97,6 @@ const createCatList = async (category) => {
         newCat.innerHTML = `${cat.name}`;
         newCat.onclick = anchorPressed
         newCat.setAttribute('data-id', `${cat.id}`);
-        console.log(newCat);
         catDiv1.appendChild(newCat);
     })
 
@@ -119,7 +118,6 @@ const createCatList = async (category) => {
     catDiv3.classList.add("chatbox__messages");
     catDiv3.id = "cat";
     catDiv3.appendChild(catDiv2);
-    console.log(catDiv3);
     botBox.appendChild(catDiv3)
 }
 //question list 
@@ -160,7 +158,6 @@ async function createAnswerElem(answerText) {
     newCat.id = `answer-item-${CatQuestId}`;
     newCat.innerHTML = `${answerText}`;
     newCat.setAttribute('data-id', `${CatQuestId}`);
-    console.log(newCat);
 
     let ansDiv1 = document.createElement("div");
     ansDiv1.classList.add("list-group", "row", "answer-list");
@@ -198,13 +195,12 @@ const LastMessage = () => {
     message.classList.add("message");
     message.id = "last-msg-tag"
     message.appendChild(messageItem);
-    console.log(message);
     botBox.appendChild(message);
+    createCatList(category)
 }
 
 const postQuery = async (e) => {
     e.preventDefault();
-    console.log(newQuery);
 
     let input = document.getElementById("queryText").value;
 
@@ -221,7 +217,6 @@ const postQuery = async (e) => {
             body: JSON.stringify(postData)
         })
     const data = await res.json();
-    console.log(data);
     e.target.onclick = false;
     document.getElementById("query-msg-tag").remove();
     document.getElementById("write-query").remove();
@@ -259,38 +254,15 @@ const queryWrite = (e) => {
 }
 
 const feedbackMenu = async () => {
-    //remove tag feedback
-    let div1 = document.getElementById("tag-feedback")
-    div1.remove();
-
-    //remove previous buttons element  
-    let feedback_btn_No = document.getElementById("feedback-btn-menu")
-    feedback_btn_No.onclick = false
-    let feedback_btn_Yes = document.getElementById("feedback-btn-share")
-    feedback_btn_Yes.onclick = false
-    feedback_btn_Yes.remove();
-    feedback_btn_No.remove();
-
-    // add new button elements 
-    let div2 = document.getElementById("feedback-btn")
-
-    let feedback_no_menu = document.createElement("button");
-    feedback_no_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
-    feedback_no_menu.id = `feedback-btn-select-menu`;
-    feedback_no_menu.innerHTML = "Go to Menu";
+    //create menu button 
+    let data = goToMenu();
 
     let feedback_no_query = document.createElement("button");
     feedback_no_query.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_no_query.id = `feedback-btn-query`;
     feedback_no_query.innerHTML = "Write Your Query";
-    div2.appendChild(feedback_no_menu);
-    div2.appendChild(feedback_no_query);
+    data.appendChild(feedback_no_query);
 
-    feedback_no_menu.onclick = () => {
-        let feedBack = document.getElementById("feedback-mesg")
-        feedBack.remove()
-        createCatList(category);
-    }
     feedback_no_query.onclick = queryWrite;
 }
 //end
@@ -348,6 +320,38 @@ const catTag = () => {
     botBox.appendChild(message);
 }
 
+const goToMenu = () => {
+    //remove previous buttons element  
+    let feedback_btn_No = document.getElementById("feedback-btn-No")
+    feedback_btn_No.onclick = false
+    let feedback_btn_Yes = document.getElementById("feedback-btn-yes")
+    feedback_btn_Yes.onclick = false
+    feedback_btn_Yes.remove();
+    feedback_btn_No.remove();
+
+    //remove tag feedback
+    let div1 = document.getElementById("tag-feedback")
+    div1.remove();
+
+    // add new button elements 
+    let div2 = document.getElementById("feedback-btn");
+
+    let feedback_no_menu = document.createElement("button");
+    feedback_no_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_no_menu.id = `feedback-btn-select-menu`;
+    feedback_no_menu.innerHTML = "Go to Menu";
+    div2.appendChild(feedback_no_menu);
+
+    feedback_no_menu.onclick = () => {
+        let feedBack = document.getElementById("feedback-mesg")
+        feedBack.remove()
+        createCatList(category);
+    }
+
+    return div2
+
+}
+
 const answerTag = () => {
 
     let div1 = document.createElement("div");
@@ -359,23 +363,23 @@ const answerTag = () => {
     div2.classList.add("feedback");
     div2.id = "feedback-btn";
 
-    let feedback_btn = document.createElement("button");
-    feedback_btn.classList.add("btn", "btn-primary", "btn-sm", "btn");
-    feedback_btn.id = `feedback-btn-share`
+    let feedback_btn_yes = document.createElement("button");
+    feedback_btn_yes.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_btn_yes.id = `feedback-btn-yes`
+    feedback_btn_yes.innerHTML = "yes";
 
-    feedback_btn.innerHTML = "yes";
-
-    let feedback_btn_menu = document.createElement("button");
-    feedback_btn_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
-    feedback_btn_menu.id = `feedback-btn-menu`;
-    feedback_btn_menu.innerHTML = "No";
-    feedback_btn_menu.onclick = feedbackMenu
-    feedback_btn.onclick = () => {
+    let feedback_btn_No = document.createElement("button");
+    feedback_btn_No.classList.add("btn", "btn-primary", "btn-sm", "btn");
+    feedback_btn_No.id = `feedback-btn-No`;
+    feedback_btn_No.innerHTML = "No";
+    feedback_btn_No.onclick = feedbackMenu
+    feedback_btn_yes.onclick = (e) => {
+        goToMenu();
         console.log("yes");
-
+        e.target.onclick = false;
     }
-    div2.appendChild(feedback_btn);
-    div2.appendChild(feedback_btn_menu);
+    div2.appendChild(feedback_btn_yes);
+    div2.appendChild(feedback_btn_No);
 
     let messageItem = document.createElement("div");
     messageItem.id = "tag-item";
@@ -383,7 +387,6 @@ const answerTag = () => {
     messageItem.appendChild(div1);
     messageItem.appendChild(div2);
 
-    console.log(messageItem);
     let message = document.createElement("div");
     message.classList.add("message");
     message.id = "feedback-mesg"
@@ -393,6 +396,7 @@ const answerTag = () => {
 
 
 }
+
 //end
 
 // reply element created
@@ -430,11 +434,9 @@ const replyElem = (text) => {
 const anchorPressed = async (e) => {
     let tagId = e.target.id; // Get ID of Clicked Element;
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
-    console.log(tagId);
     catId = e.currentTarget.getAttribute('data-id');
     arrayName = `category`;
     addCounter(catId, arrayName)
-    console.log(`id of cat-list-${catId}`);
     replyElem(text);
 
     // disable category menu
@@ -458,15 +460,12 @@ const answerList = async (e) => {
 
     let tagQuesId = e.target.id; // Get ID of Clicked Element;
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
-    console.log(tagQuesId);
 
     CatQuestId = e.currentTarget.getAttribute('data-id');
-    console.log(`id of cat-question-selected -${CatQuestId}`);
 
     replyElem(text);
     let menuDisable = document.getElementById('mesg-reply');
     let questions = document.getElementsByClassName("question-list-item");
-    console.log(questions);
 
     // disable questionList menu
     if (menuDisable) {
@@ -490,7 +489,6 @@ async function main() {
 
     //sort category on counter basis descending
     category.sort((a, b) => parseInt(b.counter) - parseInt(a.counter));
-    console.log(category);
 
     createCatList(category);
 
