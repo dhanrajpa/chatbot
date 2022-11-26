@@ -11,14 +11,21 @@ let catId;
 let CatQuestId;
 let cat_questions;
 
-let categories_List = document.getElementById('categories-list');
-let question_list = document.getElementById('question-list');
-let reply_list = document.getElementById('cat-reply');
-let answer_list = document.getElementById("answer")
 let botBox = document.getElementById("Bot-Box")
+let answer_list = document.getElementById("answer")
+let reply_list = document.getElementById('cat-reply');
+let question_list = document.getElementById('question-list');
+let categories_List = document.getElementById('categories-list');
 
+//url
 let fetch_Category = "http://localhost:3000/category"
 let newQuery = "http://localhost:3000/NewQuries"
+
+//scroll to bottom
+const scrollToBottom = (elem) => {
+    let el = document.querySelector(elem);
+    el.scrollTop = el.scrollHeight;
+}
 
 // get categories
 const getCateg = async (url) => {
@@ -71,6 +78,7 @@ const showMoreCat = (e) => {
     hiddenItems.forEach(item => item.classList.toggle('hidden'));
     e.target.onclick = false
     document.querySelector(".show-more-button").remove()
+    scrollToBottom('.Chat-container');
 }
 
 //create category list
@@ -111,7 +119,7 @@ const createCatList = async (category) => {
 
 
     let catDiv2 = document.createElement("div");
-    catDiv2.classList.add("col-8");
+    // catDiv2.classList.add("col-8");
     catDiv2.appendChild(catDiv1);
 
     let catDiv3 = document.createElement("div");
@@ -119,6 +127,8 @@ const createCatList = async (category) => {
     catDiv3.id = "cat";
     catDiv3.appendChild(catDiv2);
     botBox.appendChild(catDiv3)
+    scrollToBottom('.Chat-container');
+
 }
 //question list 
 async function createCatQuesList(cat_question) {
@@ -147,6 +157,8 @@ async function createCatQuesList(cat_question) {
     questDiv3.classList.add("chatbox__messages");
     questDiv3.appendChild(questDiv2)
     botBox.appendChild(questDiv3)
+    scrollToBottom('.Chat-container');
+
 }
 //Answer Element
 async function createAnswerElem(answerText) {
@@ -393,10 +405,8 @@ const answerTag = () => {
 
     message.appendChild(messageItem);
     botBox.appendChild(message);
-
-
+    scrollToBottom('.Chat-container');
 }
-
 //end
 
 // reply element created
@@ -419,7 +429,7 @@ const replyElem = (text) => {
     replyDiv.appendChild(newReply);
 
     let replyDiv2 = document.createElement("div");
-    replyDiv2.classList.add("col-8", "reply__messages__box");
+    replyDiv2.classList.add("reply__messages__box");  //"col-8", deleted
     replyDiv2.appendChild(replyDiv);
 
     let replyDiv3 = document.createElement("div");
@@ -452,6 +462,7 @@ const anchorPressed = async (e) => {
     //categories question**********************
     cat_questions = await getCatQuestions(catId);
     createCatQuesList(cat_questions);
+    scrollToBottom('.Chat-container');
 
 }
 
