@@ -35,7 +35,11 @@ const getCatQuestions = async (id) => {
     return data;
 }
 //end
+//show more catgory
+const showMore = () => {
 
+
+}
 //create category list
 const createCatList = async (category) => {
     catTag()
@@ -95,7 +99,7 @@ async function createCatQuesList(cat_question) {
     questDiv3.appendChild(questDiv2)
     botBox.appendChild(questDiv3)
 }
-
+//Answer Element
 async function createAnswerElem(answerText) {
 
     let newCat = document.createElement("a");
@@ -127,32 +131,7 @@ async function createAnswerElem(answerText) {
     answerTag();
 }
 
-const postQuery = async (e) => {
-    e.preventDefault();
-    console.log(newQuery);
-    let input = document.getElementById("queryText").value;
-    const postData = {
-        query: input,
-    };
-    console.log(input);
-
-    const res = await fetch(newQuery,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(postData)
-        })
-    const data = await res.json();
-    console.log(data);
-    e.target.onclick = false
-    document.getElementById("query-msg-tag").remove()
-    document.getElementById("write-query").remove()
-    LastMessage()
-        
-}
-
+//query Post Feedback
 const LastMessage = () => {
     let div = document.createElement("div");
     div.classList.add("messages__item--operator");
@@ -169,6 +148,33 @@ const LastMessage = () => {
     message.appendChild(messageItem);
     console.log(message);
     botBox.appendChild(message);
+}
+
+const postQuery = async (e) => {
+    e.preventDefault();
+    console.log(newQuery);
+
+    let input = document.getElementById("queryText").value;
+
+    const postData = {
+        query: input,
+    };
+    // Post Query API
+    const res = await fetch(newQuery,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
+        })
+    const data = await res.json();
+    console.log(data);
+    e.target.onclick = false;
+    document.getElementById("query-msg-tag").remove();
+    document.getElementById("write-query").remove();
+    LastMessage();
+
 }
 
 const queryWrite = (e) => {
@@ -198,9 +204,6 @@ const queryWrite = (e) => {
 
     e.target.onclick = false
     btn_Query.onclick = postQuery;
-
-
-
 }
 
 const feedbackMenu = async () => {
@@ -232,11 +235,13 @@ const feedbackMenu = async () => {
     div2.appendChild(feedback_no_query);
 
     feedback_no_menu.onclick = () => {
-        console.log("hello menu");
+        let feedBack = document.getElementById("feedback-mesg")
+        feedBack.remove()
         createCatList(category);
     }
     feedback_no_query.onclick = queryWrite;
 }
+//end
 
 // create tag elements
 const questionTag = () => {
@@ -305,6 +310,7 @@ const answerTag = () => {
     let feedback_btn = document.createElement("button");
     feedback_btn.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_btn.id = `feedback-btn-share`
+
     feedback_btn.innerHTML = "yes";
 
     let feedback_btn_menu = document.createElement("button");
@@ -312,7 +318,10 @@ const answerTag = () => {
     feedback_btn_menu.id = `feedback-btn-menu`;
     feedback_btn_menu.innerHTML = "No";
     feedback_btn_menu.onclick = feedbackMenu
+    feedback_btn.onclick = () => {
+        console.log("yes");
 
+    }
     div2.appendChild(feedback_btn);
     div2.appendChild(feedback_btn_menu);
 
@@ -332,7 +341,6 @@ const answerTag = () => {
 
 
 }
-
 //end
 
 // reply element created
@@ -360,6 +368,7 @@ const replyElem = (text) => {
     botBox.appendChild(replyDiv3)
 }
 
+//question List
 const anchorPressed = async (e) => {
     let tagId = e.target.id; // Get ID of Clicked Element;
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
@@ -383,7 +392,7 @@ const anchorPressed = async (e) => {
     createCatQuesList(cat_questions);
 
 }
-
+//answer
 const answerList = async (e) => {
 
     let tagQuesId = e.target.id; // Get ID of Clicked Element;
@@ -417,10 +426,14 @@ const answerList = async (e) => {
 async function main() {
 
     category = await getCateg(fetch_Category)
+
+    //sort category on counter basis descending
+    category.sort((a, b) => parseInt(b.counter) - parseInt(a.counter));
     console.log(category);
+
     createCatList(category);
 
-    console.log("hello");
+    // console.log("hello");
 
 }
 
