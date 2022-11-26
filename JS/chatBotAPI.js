@@ -15,7 +15,7 @@ let reply_list = document.getElementById('cat-reply');
 let answer_list = document.getElementById("answer")
 let botBox = document.getElementById("Bot-Box")
 let fetch_Category = "http://localhost:3000/category"
-let newQuery = "http://localhost:3000/newQueries"
+let newQuery = "http://localhost:3000/NewQuries"
 /**
  * 
  * @param {categoryId} category id  
@@ -35,22 +35,33 @@ const getCatQuestions = async (id) => {
     return data;
 }
 //end
-//show more catgory
-const showMore = () => {
-
-
+const showMoreCat = (e) => {
+    console.log("into hsow more cat");
+    const hiddenItems = document.querySelectorAll('.hidden-item');
+    hiddenItems.forEach(item => item.classList.toggle('hidden'));
+    e.target.onclick = false
+    document.querySelector(".show-more-button").remove()
 }
 //create category list
 const createCatList = async (category) => {
     catTag()
+
     let catDiv1 = document.createElement("div");
     catDiv1.id = "categories-list";
     catDiv1.classList.add("list-group", "row", "categories-list");
 
+    let count = 0
     category.map((cat) => {
         let newCat = document.createElement("a");
         newCat.href = "#";
-        newCat.classList.add("list-group-item", "list-group-item-action", "categories-list-item");
+
+        if (count < 4) {
+            newCat.classList.add("list-group-item", "list-group-item-action", "categories-list-item");
+        } else {
+            newCat.classList.add("list-group-item", "list-group-item-action", "categories-list-item", "hidden-item", "hidden");
+        }
+
+        count = count + 1;
         newCat.id = `cat-item-${cat.id}`;
         newCat.innerHTML = `${cat.name}`;
         newCat.onclick = anchorPressed
@@ -58,6 +69,16 @@ const createCatList = async (category) => {
         console.log(newCat);
         catDiv1.appendChild(newCat);
     })
+
+    let showMore = document.createElement("a");
+    showMore.classList.add("show-more-button", "list-group-item", "list-group-item-action", "categories-list-item");
+    showMore.innerHTML = "Show More"
+    showMore.href = "#";
+    showMore.onclick = showMoreCat
+    catDiv1.appendChild(showMore);
+
+
+
 
     let catDiv2 = document.createElement("div");
     catDiv2.classList.add("col-8");

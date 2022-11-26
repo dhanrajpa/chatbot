@@ -88,6 +88,17 @@
 #categories-list {
   margin: 0.5rem 0 0 1rem;
 }
+#categories-list .hidden {
+  display: none;
+}
+#categories-list .show-more-button {
+  border-radius: 0.8rem;
+  margin-top: 0.25rem;
+  font-size: 11px !important;
+  line-height: 0.8;
+  color: #ffffff;
+  background-color: rgb(24, 61, 126);
+}
 #categories-list .categories-list-item {
   padding: 0.3rem;
   text-align: center;
