@@ -1,4 +1,5 @@
 /**
+ * Todo 
  * @param {counter} store count  
  * @param {categoryId} category id  
  * *API's created 
@@ -18,8 +19,8 @@ let question_list = document.getElementById('question-list');
 let categories_List = document.getElementById('categories-list');
 
 //url
-let fetch_Category = "http://localhost:3000/category"
-let newQuery = "http://localhost:3000/NewQuries"
+let fetch_Category = "http://172.27.94.225:3000/category"
+let newQuery = "http://172.27.94.225:3000/NewQuries"
 
 //scroll to bottom
 const scrollToBottom = (elem) => {
@@ -36,7 +37,7 @@ const getCateg = async (url) => {
 
 // get questions 
 const getCatQuestions = async (id) => {
-    let response = await fetch(`http://localhost:3000/queries?categoryId=${id}`);
+    let response = await fetch(`http://172.27.94.225:3000/queries?categoryId=${id}`);
     let data = await response.json()
     return data;
 }
@@ -44,7 +45,7 @@ const getCatQuestions = async (id) => {
 
 //counter Cat and queries  API
 const getCounter = async (arrayName, id) => {
-    let response = await fetch(`http://localhost:3000/${arrayName}/${id}`);
+    let response = await fetch(`http://172.27.94.225:3000/${arrayName}/${id}`);
     let data = await response.json()
     let count = data['counter'];
     return count;
@@ -52,7 +53,7 @@ const getCounter = async (arrayName, id) => {
 
 const addCounter = async (id, arrayName) => {
 
-    let url = `http://localhost:3000/${arrayName}/${id}`
+    let url = `http://172.27.94.225:3000/${arrayName}/${id}`
 
     let count = await getCounter(arrayName, id)
 
@@ -91,6 +92,7 @@ const createCatList = async (category) => {
 
     let count = 0
     category.map((cat) => {
+
         let newCat = document.createElement("a");
         newCat.href = "#";
 
@@ -116,10 +118,7 @@ const createCatList = async (category) => {
     catDiv1.appendChild(showMore);
 
 
-
-
     let catDiv2 = document.createElement("div");
-    // catDiv2.classList.add("col-8");
     catDiv2.appendChild(catDiv1);
 
     let catDiv3 = document.createElement("div");
@@ -196,7 +195,7 @@ const LastMessage = () => {
 
     let newCat = document.createElement("a");
     newCat.href = "#";
-    newCat.innerHTML = "Thanks for writing to us. We will get back to you , In case if your query doesn't get answered please reach out to xxxxx@cybage.com";
+    newCat.innerHTML = "Thanks for writing to us. We will get back to you , In case if your query doesn't get answered please reach out to rheav@cybage.com";
     newCat.classList.add("list-group-item", "list-group-item-action", "resp-list-item");
 
     let div = document.createElement("div");
@@ -274,7 +273,6 @@ const queryWrite = (e) => {
 const feedbackMenu = async () => {
     //create menu button 
     let data = goToMenu();
-
     let feedback_no_query = document.createElement("button");
     feedback_no_query.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_no_query.id = `feedback-btn-query`;
@@ -416,8 +414,8 @@ const answerTag = () => {
         let menuRemove = document.getElementById("feedback-mesg");
         menuRemove.remove();
         replyElem(feedback_btn_yes.innerHTML)
-        goToMenu();
-        console.log("yes");
+        // goToMenu();
+        createCatList(category)
         e.target.onclick = false;
     }
 
@@ -475,12 +473,12 @@ const anchorPressed = async (e) => {
     // disable category menu
     let menuDisable = document.getElementById('mesg-reply');
 
-    if (menuDisable) {
-        let anchors = document.getElementsByClassName("categories-list-item");
-        for (let anchor of anchors) {
-            anchor.onclick = false;
-        }
-    }
+    // if (menuDisable) {
+    //     let anchors = document.getElementsByClassName("categories-list-item");
+    //     for (let anchor of anchors) {
+    //         anchor.onclick = false;
+    //     }
+    // }
     //end
     //categories question**********************
     cat_questions = await getCatQuestions(catId);

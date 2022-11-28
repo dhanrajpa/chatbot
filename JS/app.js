@@ -1,11 +1,11 @@
 const chatButton = document.querySelector('.chatbox__button');
 const chatContent = document.querySelector('.chatbox__support');
 const icons = {
-    isClicked: '</p>FAQ!</p>',
-    isNotClicked: '<p>FAQ!</p>'
+    isClicked: 'FAQ!',
+    isNotClicked: 'FAQ!'
 }
 /**
- * TODO: update outside click event'!
+ * 
  * ! toggle icon change**
  */
 
