@@ -150,7 +150,6 @@ async function createCatQuesList(cat_question) {
     })
 
     let questDiv2 = document.createElement("div");
-    questDiv2.classList.add("col-8");
     questDiv2.appendChild(questDiv1)
 
     let questDiv3 = document.createElement("div");
@@ -158,8 +157,8 @@ async function createCatQuesList(cat_question) {
     questDiv3.appendChild(questDiv2)
     botBox.appendChild(questDiv3)
     scrollToBottom('.Chat-container');
-
 }
+
 //Answer Element
 async function createAnswerElem(answerText) {
     arrayName = `queries`
@@ -178,7 +177,7 @@ async function createAnswerElem(answerText) {
     ansDiv1.appendChild(newCat);
 
     let ansDiv2 = document.createElement("div");
-    ansDiv2.classList.add("col-8");
+    // ansDiv2.classList.add("col-8");
     ansDiv2.appendChild(ansDiv1)
 
     let ansDiv3 = document.createElement("div");
@@ -194,13 +193,18 @@ async function createAnswerElem(answerText) {
 
 //query Post Feedback
 const LastMessage = () => {
+
+    let newCat = document.createElement("a");
+    newCat.href = "#";
+    newCat.innerHTML = "Thanks for writing to us. We will get back to you , In case if your query doesn't get answered please reach out to xxxxx@cybage.com";
+    newCat.classList.add("list-group-item", "list-group-item-action", "resp-list-item");
+
     let div = document.createElement("div");
-    div.classList.add("messages__item--operator");
     div.id = "tag-questions";
-    div.innerHTML = "Thanks for writing to us. We will get back to you , incase iff your query doesn't get answered pl reach out to xxxxx@cybage.com";
 
     let messageItem = document.createElement("div");
     messageItem.id = "tag-item";
+    div.appendChild(newCat)
     messageItem.appendChild(div);
 
     let message = document.createElement("div");
@@ -263,6 +267,8 @@ const queryWrite = (e) => {
 
     e.target.onclick = false
     btn_Query.onclick = postQuery;
+    scrollToBottom('.Chat-container');
+
 }
 
 const feedbackMenu = async () => {
@@ -272,10 +278,11 @@ const feedbackMenu = async () => {
     let feedback_no_query = document.createElement("button");
     feedback_no_query.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_no_query.id = `feedback-btn-query`;
-    feedback_no_query.innerHTML = "Write Your Query";
+    feedback_no_query.innerHTML = "send us Query";
     data.appendChild(feedback_no_query);
 
     feedback_no_query.onclick = queryWrite;
+    scrollToBottom('.Chat-container');
 }
 //end
 
@@ -333,26 +340,29 @@ const catTag = () => {
 }
 
 const goToMenu = () => {
-    //remove previous buttons element  
-    let feedback_btn_No = document.getElementById("feedback-btn-No")
-    feedback_btn_No.onclick = false
-    let feedback_btn_Yes = document.getElementById("feedback-btn-yes")
-    feedback_btn_Yes.onclick = false
-    feedback_btn_Yes.remove();
-    feedback_btn_No.remove();
-
-    //remove tag feedback
-    let div1 = document.getElementById("tag-feedback")
-    div1.remove();
-
-    // add new button elements 
-    let div2 = document.getElementById("feedback-btn");
 
     let feedback_no_menu = document.createElement("button");
     feedback_no_menu.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_no_menu.id = `feedback-btn-select-menu`;
     feedback_no_menu.innerHTML = "Go to Menu";
+
+    let div2 = document.createElement("div");
+    div2.classList.add("feedback");
+    div2.id = "feedback-btn";
     div2.appendChild(feedback_no_menu);
+
+    //reused 1
+    let messageItem = document.createElement("div");
+    messageItem.id = "tag-item";
+
+    messageItem.appendChild(div2);
+
+    let message = document.createElement("div");
+    message.classList.add("message");
+    message.id = "feedback-mesg";
+    message.appendChild(messageItem);
+    botBox.appendChild(message);
+    //reused end 1
 
     feedback_no_menu.onclick = () => {
         let feedBack = document.getElementById("feedback-mesg")
@@ -360,8 +370,7 @@ const goToMenu = () => {
         createCatList(category);
     }
 
-    return div2
-
+    return div2;
 }
 
 const answerTag = () => {
@@ -384,15 +393,10 @@ const answerTag = () => {
     feedback_btn_No.classList.add("btn", "btn-primary", "btn-sm", "btn");
     feedback_btn_No.id = `feedback-btn-No`;
     feedback_btn_No.innerHTML = "No";
-    feedback_btn_No.onclick = feedbackMenu
-    feedback_btn_yes.onclick = (e) => {
-        goToMenu();
-        console.log("yes");
-        e.target.onclick = false;
-    }
     div2.appendChild(feedback_btn_yes);
     div2.appendChild(feedback_btn_No);
 
+    //reused 1
     let messageItem = document.createElement("div");
     messageItem.id = "tag-item";
 
@@ -401,10 +405,29 @@ const answerTag = () => {
 
     let message = document.createElement("div");
     message.classList.add("message");
-    message.id = "feedback-mesg"
-
+    message.id = "feedback-mesg";
     message.appendChild(messageItem);
+
     botBox.appendChild(message);
+    // end 1 
+
+    feedback_btn_yes.onclick = (e) => {
+
+        let menuRemove = document.getElementById("feedback-mesg");
+        menuRemove.remove();
+        replyElem(feedback_btn_yes.innerHTML)
+        goToMenu();
+        console.log("yes");
+        e.target.onclick = false;
+    }
+
+    feedback_btn_No.onclick = (e) => {
+        let menuRemove = document.getElementById("feedback-mesg");
+        menuRemove.remove();
+        replyElem(feedback_btn_No.innerHTML);
+        feedbackMenu();
+        e.target.onclick = false;
+    }
     scrollToBottom('.Chat-container');
 }
 //end

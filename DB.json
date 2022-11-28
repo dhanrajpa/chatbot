@@ -1,104 +1,295 @@
 {
-    "category": [
-        {
-            "name": "PAL process and Dashboard",
-            "id": 1
-        },
-        {
-            "name": "Timesheet",
-            "id": 2
-        },
-        {
-            "name": "Reimbursement",
-            "id": 3
-        },
-        {
-            "name": "Respective DLs",
-            "id": 4
-        },
-        {
-            "name": "Project related queries",
-            "id": 5
-        },
-        {
-            "name": "Installations-approval",
-            "id": 6
-        },
-        {
-            "name": "Free courses",
-            "id": 7
-        },
-        {
-            "name": "OES related queries",
-            "id": 8
-        }
-    ],
-    "queries": [
-        {
-            "categoryId": 1,
-            "question": "What is PAL",
-            "answer": "Personalized Accelerated Learning",
-            "id": 1
-        },
-        {
-            "categoryId": 1,
-            "question": "Whom is it for",
-            "answer": "it is for cybage resource",
-            "id": 2
-        },
-        {
-            "categoryId": 2,
-            "question": "Who will approve my timesheet",
-            "answer": "it is for cybage resource",
-            "id": 3
-        },
-        {
-            "categoryId": 3,
-            "question": "How to apply for reimbursement?",
-            "answer": "after completion of course on PAL Dashboard",
-            "id": 4
-        },
-        {
-            "categoryId": 4,
-            "question": "ES+ related queries",
-            "answer": "ESplusadmin@cybage.com",
-            "id": 5
-        },
-        {
-            "categoryId": 6,
-            "question": "I need few installations to practice, Can I do it on my base machine?",
-            "answer": "all tools are available in Utility shared folder ,you cn install from there",
-            "id": 6
-        },
-        {
-            "categoryId": 7,
-            "question": "How to watch courses on YouTube without access?",
-            "answer": "No,You can't use Youtube without access",
-            "id": 7
-        },
-        {
-            "categoryId": 7,
-            "question": "I need few installations to practice, Can I do it on my base machine?",
-            "answer": "all tools are available in Utility shared folder ,you cn install from there",
-            "id": 8
-        },
-        {
-            "categoryId": 8,
-            "question": "Unable to start the exam even after clicking it",
-            "answer": "contact Training Team",
-            "id": 9
-        },
-        {
-            "categoryId": 8,
-            "question": "Have not received the test mail",
-            "answer": "contact Training Team",
-            "id": 10
-        }
-    ],
-    "admin": [
-        {
-            "username": "rheav@cybage.com",
-            "password": "cybage@123"
-        }
-    ]
+  "category": [
+    {
+      "id": 1,
+      "name": "Respective DL",
+      "counter": 15
+    },
+    {
+      "id": 2,
+      "name": "Timesheet",
+      "counter": 14
+    },
+    {
+      "id": 3,
+      "name": "Reimbursement",
+      "counter": 286
+    },
+    {
+      "id": 4,
+      "name": "PAL",
+      "counter": 23
+    },
+    {
+      "id": 5,
+      "name": "Project related queries",
+      "counter": 13
+    },
+    {
+      "id": 6,
+      "name": "Free courses",
+      "counter": 13
+    },
+    {
+      "id": 7,
+      "name": "Respective",
+      "counter": 16
+    }
+  ],
+  "queries": [
+    {
+      "categoryId": 3,
+      "question": "Do I have to complete the trainings mentioned in the stipulated time period given in the course?",
+      "answer": "While enrolling for the session on Coursera website, please select the audit only option to access the course for free.",
+      "counter": 184,
+      "id": 4
+    },
+    {
+      "categoryId": 4,
+      "question": "ES+ related queries",
+      "answer": "ESplusadmin@cybage.com",
+      "counter": 16,
+      "id": 5
+    },
+    {
+      "categoryId": 7,
+      "question": "How to watch courses on YouTube without access?",
+      "answer": "No,You can't use Youtube without access",
+      "counter": 13,
+      "id": 7
+    }
+  ],
+  "NewQuries": [
+    {
+      "id": 1,
+      "query": "HOw to apply leave?"
+    },
+    {
+      "id": 2,
+      "query": "HOw to apply 1 day leave?"
+    },
+    {
+      "id": 3,
+      "query": "HOw to apply 2 day  leave?"
+    },
+    {
+      "id": 5,
+      "query": "HOw to apply 4 day  leave?"
+    },
+    {
+      "id": 6,
+      "query": "HOw to apply 5 day leave?"
+    },
+    {
+      "id": 8,
+      "query": "HOw to apply 6 day leave?"
+    },
+    {
+      "id": 9,
+      "query": "HOw to apply 7 day leave?"
+    },
+    {
+      "id": 10,
+      "query": "HOw to apply 6 day leave?"
+    },
+    {
+      "id": 11,
+      "query": "HOw to apply 6 day leave?"
+    },
+    {
+      "id": 12,
+      "query": "HOw to apply 6 day leave?"
+    },
+    {
+      "query": "a",
+      "id": 13
+    },
+    {
+      "query": "nvjhvjvjvh",
+      "id": 14
+    },
+    {
+      "query": "axa",
+      "id": 15
+    },
+    {
+      "query": "aa",
+      "id": 16
+    },
+    {
+      "query": "hhvjvh",
+      "id": 17
+    },
+    {
+      "query": "ccz",
+      "id": 18
+    },
+    {
+      "query": "ada",
+      "id": 19
+    },
+    {
+      "query": "aa",
+      "id": 20
+    },
+    {
+      "query": "as",
+      "id": 21
+    },
+    {
+      "query": "aas",
+      "id": 22
+    },
+    {
+      "query": "daa",
+      "id": 23
+    },
+    {
+      "query": "ada",
+      "id": 24
+    },
+    {
+      "query": "dadd",
+      "id": 25
+    },
+    {
+      "query": "xxaa",
+      "id": 26
+    },
+    {
+      "query": "",
+      "id": 27
+    },
+    {
+      "query": "a",
+      "id": 28
+    },
+    {
+      "query": "",
+      "id": 29
+    },
+    {
+      "query": "",
+      "id": 30
+    },
+    {
+      "query": "a",
+      "id": 31
+    },
+    {
+      "query": "a",
+      "id": 32
+    },
+    {
+      "query": "",
+      "id": 33
+    },
+    {
+      "query": "aa",
+      "id": 34
+    },
+    {
+      "query": "ada",
+      "id": 35
+    },
+    {
+      "query": "",
+      "id": 36
+    },
+    {
+      "query": "",
+      "id": 37
+    },
+    {
+      "query": "",
+      "id": 38
+    },
+    {
+      "query": "",
+      "id": 39
+    },
+    {
+      "query": "aa",
+      "id": 40
+    },
+    {
+      "query": "",
+      "id": 41
+    },
+    {
+      "query": "",
+      "id": 42
+    },
+    {
+      "query": "qq1",
+      "id": 43
+    },
+    {
+      "query": "",
+      "id": 44
+    },
+    {
+      "query": "",
+      "id": 45
+    },
+    {
+      "query": "",
+      "id": 46
+    },
+    {
+      "query": "",
+      "id": 47
+    },
+    {
+      "query": "",
+      "id": 48
+    },
+    {
+      "query": "x",
+      "id": 49
+    },
+    {
+      "query": "",
+      "id": 50
+    },
+    {
+      "query": "",
+      "id": 51
+    },
+    {
+      "query": "",
+      "id": 52
+    },
+    {
+      "query": "",
+      "id": 53
+    },
+    {
+      "query": "",
+      "id": 54
+    },
+    {
+      "query": "",
+      "id": 55
+    },
+    {
+      "query": "",
+      "id": 56
+    },
+    {
+      "query": "ccxc",
+      "id": 57
+    },
+    {
+      "query": "ybeu bjb jbh ",
+      "id": 58
+    }
+  ],
+  "admin": [
+    {
+      "username": "rheav@cybage.com",
+      "password": "cybage@123",
+      "id": 1
+    }
+  ]
 }
