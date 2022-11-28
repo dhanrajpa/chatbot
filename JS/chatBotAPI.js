@@ -83,14 +83,19 @@ const showMoreCat = (e) => {
 }
 
 //create category list
-const createCatList = async (category) => {
+const createCatList = async () => {
+    category = await getCateg(fetch_Category)
+    console.log(category);
     catTag()
+
+    category.sort((a, b) => parseInt(b.counter) - parseInt(a.counter));
 
     let catDiv1 = document.createElement("div");
     catDiv1.id = "categories-list";
     catDiv1.classList.add("list-group", "row", "categories-list");
 
     let count = 0
+
     category.map((cat) => {
 
         let newCat = document.createElement("a");
@@ -109,7 +114,7 @@ const createCatList = async (category) => {
         newCat.setAttribute('data-id', `${cat.id}`);
         catDiv1.appendChild(newCat);
     })
-
+    console.log(catDiv1);
     let showMore = document.createElement("a");
     showMore.classList.add("show-more-button", "list-group-item", "list-group-item-action", "categories-list-item");
     showMore.innerHTML = "Show More"
@@ -211,7 +216,7 @@ const LastMessage = () => {
     message.id = "last-msg-tag"
     message.appendChild(messageItem);
     botBox.appendChild(message);
-    createCatList(category)
+    createCatList()
 }
 
 const postQuery = async (e) => {
@@ -365,7 +370,7 @@ const goToMenu = () => {
     feedback_no_menu.onclick = () => {
         let feedBack = document.getElementById("feedback-mesg")
         feedBack.remove()
-        createCatList(category);
+        createCatList();
     }
 
     return div2;
@@ -415,7 +420,7 @@ const answerTag = () => {
         menuRemove.remove();
         replyElem(feedback_btn_yes.innerHTML)
         // goToMenu();
-        createCatList(category)
+        createCatList()
         e.target.onclick = false;
     }
 
@@ -517,12 +522,11 @@ const answerList = async (e) => {
 
 async function main() {
 
-    category = await getCateg(fetch_Category)
-
+    // category = await getCateg(fetch_Category)
+    // console.log(category);
     //sort category on counter basis descending
-    category.sort((a, b) => parseInt(b.counter) - parseInt(a.counter));
 
-    createCatList(category);
+    createCatList();
 
 
 }
