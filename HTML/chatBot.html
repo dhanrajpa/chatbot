@@ -24,13 +24,11 @@
 <body>
     <section class="content"></section>
     <div class="chatbox" id="chat-menu">
-        <div class="chatbox__support">
-
+        <div class="chatbox__support chatbox--active" id="chatBody" style="display:none;">
             <div class="chatbox__header">
                 <img id="imgCybageLogo" title="cybageLogo" src="../Images/cybageLogoWhite.png" alt="cybageLogo"
                     style="border-width:0px;">
             </div>
-
             <div class="Chat-container" id="Bot-Box">
                 <div class="message">
                     <div id="message-item">
@@ -39,17 +37,17 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="chatbox__button">
-            <button>I'm a button!</button>
+            <button type="button" id="toggleBtn">
+                FAQ!
+            </button>
         </div>
     </div>
-    <script src="../JS/chatBot.js"></script>
-    <script src="../JS/app.js"></script>
-    <script src="../JS/chatBotAPI.js"></script>
 
+    <script src="../JS/chatBotAPI.js"></script>
+    <script src="../JS/chatBotToggle.js"></script> -->
 </body>
 
 </html>

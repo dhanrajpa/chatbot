@@ -84,10 +84,12 @@ const showMoreCat = (e) => {
 
 //create category list
 const createCatList = async () => {
+
     category = await getCateg(fetch_Category)
     console.log(category);
     catTag()
 
+    //category sort on counter
     category.sort((a, b) => parseInt(b.counter) - parseInt(a.counter));
 
     let catDiv1 = document.createElement("div");
@@ -114,6 +116,7 @@ const createCatList = async () => {
         newCat.setAttribute('data-id', `${cat.id}`);
         catDiv1.appendChild(newCat);
     })
+
     console.log(catDiv1);
     let showMore = document.createElement("a");
     showMore.classList.add("show-more-button", "list-group-item", "list-group-item-action", "categories-list-item");
@@ -249,30 +252,29 @@ const queryWrite = (e) => {
     queryTag();
 
     let feedBack = document.getElementById("feedback-mesg")
-    feedBack.remove()
+    feedBack.remove();
 
     let div = document.createElement("div");
     div.classList.add("chatbox__footer");
-    div.id = "write-query"
-    botBox.appendChild(div)
+    div.id = "write-query";
+    botBox.appendChild(div);
 
     let input = document.createElement("input");
-    input.id = "queryText"
-    input.setAttribute("type", "text")
+    input.id = "queryText";
+    input.setAttribute("type", "text");
 
-    input.setAttribute("placeholder", "write your query")
+    input.setAttribute("placeholder", "write your query");
 
-    let btn_Query = document.createElement("button")
-    btn_Query.classList.add("btn", "btn-sm")
-    btn_Query.setAttribute("type", "button")
-    btn_Query.innerHTML = "Send"
-    div.appendChild(input)
-    div.appendChild(btn_Query)
+    let btn_Query = document.createElement("button");
+    btn_Query.classList.add("btn", "btn-sm");
+    btn_Query.setAttribute("type", "button");
+    btn_Query.innerHTML = "Send";
+    div.appendChild(input);
+    div.appendChild(btn_Query);
 
-    e.target.onclick = false
+    e.target.onclick = false;
     btn_Query.onclick = postQuery;
     scrollToBottom('.Chat-container');
-
 }
 
 const feedbackMenu = async () => {
