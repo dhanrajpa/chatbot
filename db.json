@@ -1,0 +1,122 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "PAL Process and Dashboard.",
+      "counter": 10
+    },
+    {
+      "name": "Free Courses",
+      "counter": 5,
+      "id": 4
+    },
+    {
+      "name": "OES related queries",
+      "counter": 12,
+      "id": 5
+    },
+    {
+      "name": "Respective DL’s",
+      "counter": 9,
+      "id": 6
+    },
+    {
+      "name": "Timesheet",
+      "counter": 20,
+      "id": 7
+    }
+  ],
+  "queries": [
+    {
+      "id": 4,
+      "categoryId": 1,
+      "question": "Do I have to complete all the trainings available on my dashboard",
+      "answer": "These trainings are recommended to you based on project demands and your current skill set. You can decide on which training(s) to accept and make best possible utilization of your time and efforts to upgrade your skills.",
+      "counter": 0
+    },
+    {
+      "id": 6,
+      "categoryId": "1",
+      "question": "What if I accept and cannot complete the trainings?",
+      "answer": "You can complete the accepted training later (if possible), or you can withdraw by giving appropriate reason (as the case may be).",
+      "counter": 0
+    },
+    {
+      "id": 7,
+      "categoryId": "1",
+      "question": "What if I withdraw and want to complete the training again?",
+      "answer": "You can send Rheav a mail stating the same.",
+      "counter": 0
+    },
+    {
+      "categoryId": "4",
+      "question": "3d3d3",
+      "answer": "3d3d",
+      "counter": 0,
+      "id": 11
+    },
+    {
+      "id": 12,
+      "categoryId": "1",
+      "question": "Some of the trainings are not relevant to my technology, can I decline them?",
+      "answer": "Yes, you can decline the trainings with appropriate reasons. You may see the same training again on your Dashboard if the skill comes in demand again for a certain project.",
+      "counter": 0
+    },
+    {
+      "id": 13,
+      "categoryId": "1",
+      "question": "What if I cannot complete it within the timeframe? ",
+      "answer": "You should complete a training within 1 year from the date of purchase or date of nomination, whichever is later",
+      "counter": 0
+    },
+    {
+      "categoryId": "9",
+      "question": "I need few installations to practice. Whom do I reach out to?",
+      "answer": "Please get in touch with the IS_Coordinator@cybage.com",
+      "counter": 0,
+      "id": 16
+    },
+    {
+      "id": 17,
+      "categoryId": "1",
+      "question": "hhfhtrg",
+      "answer": "hfhfhdgdgdg",
+      "counter": 0
+    },
+    {
+      "categoryId": "1",
+      "question": "fsdfsdfss",
+      "answer": "fsfsf",
+      "counter": 0,
+      "id": 18
+    },
+    {
+      "categoryId": "5",
+      "question": "effdf",
+      "answer": "sdfsdfs",
+      "counter": 0,
+      "id": 19
+    }
+  ],
+  "NewQueries": [
+    {
+      "id": 1,
+      "query": "HOw to apply leave?"
+    },
+    {
+      "id": 2,
+      "query": "HOw to apply 1 day leave?"
+    },
+    {
+      "id": 3,
+      "query": "HOw to apply 2 day  leave?"
+    }
+  ],
+  "admin": [
+    {
+      "username": "rheav@cybage.com",
+      "password": "cybage@123",
+      "id": 1
+    }
+  ]
+}
