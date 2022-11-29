@@ -1,8 +1,7 @@
 let d = [];
-
 const fetchQuetion = async () => {
   $.getJSON(
-    "http://localhost:3000/NewRequest",
+    "http://localhost:3000/NewQuries",
 
     function (data) {
       var queries = "";
@@ -46,11 +45,12 @@ async function deleteQuery(it) {
     console.log(i);
     id = d[i].id;
     await $.ajax({
-      url: `http://localhost:3000/NewRequest/${id}`,
+      url: `http://localhost:3000/NewQuries/${id}`,
       type: "DELETE",
       success: function (result) {
         //  console.log(result);
-        //   window.location.reload();
+          // window.location.reload();
+          $("td").remove();
       },
     });
   }
