@@ -11,66 +11,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/category.js"></script>
   <script src="../js/home.js"></script>
-  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/category.css">
 
-    <style>
-        table {
-            /* margin: 0 auto; */
-            font-size: large;
-          
-            /* border: 1px solid black; */
-        }
-  
-        h1 {
-            text-align: center;
-            color: #006600;
-            font-size: xx-large;
-            font-family: 'Gill Sans', 
-                'Gill Sans MT', ' Calibri', 
-                'Trebuchet MS', 'sans-serif';
-        }
-        .thead
-        {
-            background-color: #efff5b;
-        }
 
-        td {
-            background-color: #f1f3c8;
-            /* border: 1px solid black; */
-        }
-
-        tr{
-            
-            color: rgb(61, 15, 15);
-          font-size: 20px;
-          font-weight: 900;
-        }
-        #text
-        {
-          color: black;
-        }
-        #text:hover
-        {
-           color: #e9500f;
-        }
-  
-        th,
-        td {
-            font-weight: lighter;
-            /* border: 1px solid black; */
-            padding: 15px;
-            
-           
-        }
-  
-        
-    </style>
 </head>
   <body>
-    <article>
+   
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#" style="padding: 10px">CYBAGE</a>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <a class="navbar-brand text-dark fw-bold fs-1" href="#" style="padding: 10px">CYBAGE</a> -->
+        <img src="https://www.cybage.com/sites/default/files/2021-09/Cybage_Logo_0.png" width="120px" height="60px"/>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -85,24 +36,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item" style="padding: 10px">
-              <a class="nav-link" href="../home.html">Home</a>
+              <a class="nav-link text-dark fw-bold"  href="../home.html">Home</a>
             </li>
-            <li class="nav-item" style="padding: 10px">
-              <a class="nav-link" href="category.html">Categories</a>
+            <li class="nav-item" style="padding: 11px">
+            <button type="button" class="btn btn-link text-decoration-none text-dark fw-bold " data-bs-toggle="modal" data-bs-target="#category">
+              Add New Category
+            </button>
             </li>
+            
            
             <li class="nav-item active" style="padding: 10px">
               <a
-                class="nav-link"
+                class="nav-link text-dark fw-bold"
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#myModal"
+                data-bs-target="#myModal5"
                 >Inbox</a
               >
             </li>
-            <li class="nav-item active" style="padding: 10px">
+            <!-- <li class="nav-item active" style="padding: 10px">
               <a class="nav-link" href="#">Log Out </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
@@ -111,9 +65,7 @@
     <br/>
    
     
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#category">
-      Add New Category
-    </button><br/><br/>
+   
           <table id="table"  class="table table-striped">
       
    
@@ -191,8 +143,8 @@
     
   <!-- Modal for delete button -->
 
-    <!-- The Modal -->
-    <div class="modal" id="delete-modal">
+     <!-- The Modal -->
+     <div class="modal" id="myModal5">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -206,7 +158,19 @@
           </div>
 
           <!-- Modal body -->
-          <div class="modal-body"></div>
+          <div class="modal-body">
+            <!-- TABLE CONSTRUCTION-->
+            <table id="table1" class="table border shadow">
+              <!-- HEADING FORMATION -->
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Queries</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -214,13 +178,13 @@
 
       </div>
     </div>
-    <footer class="bg-dark text-center text-white footer fixed-bottom">
+    <footer class="bg-dark text-center text-white " style="position: fixed;left:0;bottom:0;width:100%">
     
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2020 Copyright:
+      <div class="text-center p-3" style="background-color: #4a6c85">
+        © 2022 Copyright:
         <a class="text-white fs-6" href="https://www.cybage.com/">cybage.com</a>
       </div>
     </footer>
-  </article>
+  
   </body>
 </html>

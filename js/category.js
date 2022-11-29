@@ -4,18 +4,20 @@ $(document).ready(function () {
 
   $("#add-category").click(function () {
     const categoryName = $("#category-name").val();
-
+      
     if (!(categoryName))
       return;
 
-    const data =
+    var data =
     {
       name: categoryName,
-      counter: 0
+      counter:0
+      
     }
+   
 
     $.post("http://localhost:4000/category",
-      data,
+    data,
       function (data, status) {
        
         $('#category').modal("hide");

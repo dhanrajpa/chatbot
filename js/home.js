@@ -1,11 +1,11 @@
-let d = [];
+let d1 = [];
 const fetchQuetion = async () => {
   $.getJSON(
     "http://localhost:4000/NewQueries",
 
     function (data) {
       var queries = "";
-      d = data;
+      d1 = data;
 
       //iterating through objects
       $.each(data, function (key, value) {
@@ -24,7 +24,7 @@ const fetchQuetion = async () => {
         queries += "<tr></tbody>";
       });
       //inserting rows into the table
-      $("#table").append(queries);
+      $("#table1").append(queries);
     }
   );
 };
@@ -43,7 +43,7 @@ async function deleteQuery(it) {
   } else {
     const i = it.value;
     console.log(i);
-    id = d[i].id;
+    id = d1[i].id;
     await $.ajax({
       url: `http://localhost:4000/NewQueries/${id}`,
       type: "DELETE",
