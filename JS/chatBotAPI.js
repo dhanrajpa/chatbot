@@ -8,10 +8,13 @@
 let jsondata = "";
 let category = "";
 let arrayName // url api 
+
 let catId;
 let CatQuestId;
-let cat_questions;
 
+let cat_questions;
+let email;
+let query;
 let botBox = document.getElementById("Bot-Box")
 let answer_list = document.getElementById("answer")
 let reply_list = document.getElementById('cat-reply');
@@ -41,26 +44,33 @@ const getCatQuestions = async (id) => {
     let data = await response.json()
     return data;
 }
+
 //end
 
 //counter Cat and queries  API
+
 const getCounter = async (arrayName, id) => {
     let response = await fetch(`http://172.27.94.225:3000/${arrayName}/${id}`);
-    let data = await response.json()
+    let data = await response.json();
     let count = data['counter'];
+    console.log(count);
     return count;
 }
 
 const addCounter = async (id, arrayName) => {
-
+    console.log(arrayName);
     let url = `http://172.27.94.225:3000/${arrayName}/${id}`
 
     let count = await getCounter(arrayName, id)
+    let counter = Number(count);
+    counter++;
 
     const postData = {
-        counter: ++count,
+        counter: counter.toString(),
     };
+    // console.log(postData);
 
+    console.log(JSON.stringify(postData));
     // Post Query API
     const res = await fetch(url,
         {
@@ -137,6 +147,7 @@ const createCatList = async () => {
     scrollToBottom('.Chat-container');
 
 }
+
 //question list 
 async function createCatQuesList(cat_question) {
     questionTag();
@@ -151,10 +162,28 @@ async function createCatQuesList(cat_question) {
         newCat.classList.add("list-group-item", "list-group-item-action", "question-list-item");
         newCat.id = `question-item-${cat.id}`;
         newCat.innerHTML = `${cat.question}`;
-        newCat.onclick = answerList
+        newCat.onclick = answerList;
         newCat.setAttribute('data-id', `${cat.id}`);
         questDiv1.appendChild(newCat);
     })
+
+    // write query 
+    let queryElem = document.createElement("a");
+    queryElem.href = "#";
+    queryElem.classList.add("list-group-item", "list-group-item-action", "question-list-item");
+    queryElem.id = `cat-query-add`;
+    queryElem.innerHTML = `Add your query`;
+    questDiv1.appendChild(queryElem);
+
+    queryElem.onclick = (e) => {
+        let txt = document.getElementById("cat-query-add");
+        if (txt) {
+            let txtValue = txt.innerHTML;
+            replyElem(txtValue);
+        }
+        queryWrite(e);
+    }
+    //end
 
     let questDiv2 = document.createElement("div");
     questDiv2.appendChild(questDiv1)
@@ -224,11 +253,13 @@ const LastMessage = () => {
 
 const postQuery = async (e) => {
     e.preventDefault();
+    console.log("into send");
 
-    let input = document.getElementById("queryText").value;
+    email = document.getElementById("queryText").value;
 
     const postData = {
-        query: input,
+        query: query,
+        email: email
     };
     // Post Query API
     const res = await fetch(newQuery,
@@ -241,18 +272,33 @@ const postQuery = async (e) => {
         })
     const data = await res.json();
     e.target.onclick = false;
-    document.getElementById("query-msg-tag").remove();
-    document.getElementById("write-query").remove();
+
+    let remQueryBox1 = document.getElementById("query-msg-tag")
+    remQueryBox1.remove()
+    let remQueryBox2 = document.getElementById("write-query")
+    remQueryBox2.remove()
+
     LastMessage();
 
 }
 
+const cancel = (e) => {
+    // replyElem(text)
+    console.log("into cancel");
+    document.getElementById("query-msg-tag").remove();
+    document.getElementById("write-query").remove();
+    createCatList();
+}
 const queryWrite = (e) => {
     // remove feedback
+
+
     queryTag();
 
     let feedBack = document.getElementById("feedback-mesg")
-    feedBack.remove();
+    if (feedBack) {
+        feedBack.remove();
+    }
 
     let div = document.createElement("div");
     div.classList.add("chatbox__footer");
@@ -266,15 +312,43 @@ const queryWrite = (e) => {
     input.setAttribute("placeholder", "write your query");
 
     let btn_Query = document.createElement("button");
-    btn_Query.classList.add("btn", "btn-sm");
+    btn_Query.classList.add("btn", "btn-lg", "btn-block");
     btn_Query.setAttribute("type", "button");
-    btn_Query.innerHTML = "Send";
+    btn_Query.id = "next-btn"
+    btn_Query.innerHTML = "next";
     div.appendChild(input);
-    div.appendChild(btn_Query);
+
+    let cancelDiv = document.createElement('div');
+
+    let cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("btn", "btn-lg", "btn-block");
+    cancelBtn.setAttribute("type", "button");
+    cancelDiv.id = "cancelDiv";
+    cancelBtn.innerHTML = "cancel";
+    cancelDiv.appendChild(btn_Query);
+    cancelDiv.appendChild(cancelBtn);
+    div.appendChild(cancelDiv);
 
     e.target.onclick = false;
-    btn_Query.onclick = postQuery;
+
+    btn_Query.onclick = () => {
+        let input = document.getElementById("queryText");
+        query = input.value;
+        let btnDel = document.getElementById("next-btn");
+        btnDel.remove();
+        input.setAttribute("placeholder", "add your email")
+        let send = document.createElement("button");
+        send.classList.add("btn", "btn-lg", "btn-block");
+        send.setAttribute("type", "button");
+        send.innerHTML = "send";
+        send.onclick = postQuery
+        cancelDiv.appendChild(send)
+        // postQuery(e)
+    }
+
+    cancelBtn.onclick = cancel
     scrollToBottom('.Chat-container');
+
 }
 
 const feedbackMenu = async () => {
@@ -474,6 +548,7 @@ const anchorPressed = async (e) => {
     let text = e.target.innerHTML; // Get innerText of Clicked Element;
     catId = e.currentTarget.getAttribute('data-id');
     arrayName = `category`;
+
     addCounter(catId, arrayName)
     replyElem(text);
 
@@ -524,13 +599,7 @@ const answerList = async (e) => {
 
 async function main() {
 
-    // category = await getCateg(fetch_Category)
-    // console.log(category);
-    //sort category on counter basis descending
-
     createCatList();
-
-
 }
 
 main();
