@@ -26,7 +26,7 @@ $(document).ready(function() {
  
          
         
-        $.getJSON("http://localhost:4000/admin",
+        $.getJSON("http://localhost:3000/admin",
             function(data) {
                 $.each(data, function(key, value) {
                     if (value.username === username && value.password === password) {

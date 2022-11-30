@@ -4,22 +4,21 @@ $(document).ready(function () {
 
   $("#add-category").click(function () {
     const categoryName = $("#category-name").val();
-      
+
     if (!(categoryName))
       return;
 
     var data =
     {
       name: categoryName,
-      counter:0
-      
+      counter: 0
     }
-   
 
-    $.post("http://localhost:4000/category",
-    data,
+
+    $.post("http://localhost:3000/category",
+      data,
       function (data, status) {
-       
+
         $('#category').modal("hide");
         $('td').remove();
         getAllCategory();
@@ -32,7 +31,7 @@ $(document).ready(function () {
 });
 function getAllCategory() {
   // alert("hiiii")
-  $.getJSON("http://localhost:4000/category",
+  $.getJSON("http://localhost:3000/category",
     function (data) {
       d = data;
       var category = '';
@@ -77,44 +76,43 @@ function deleteCategory(it) {
   } else {
     const i = it.value;
     id = d[i].id;
-  // if(deleteQueries(id))
-   {
-    $.ajax({
-      url: `http://localhost:4000/category/${id}`,
-      type: 'DELETE',
-      success: function (result) {
-        $('td').remove();
-        getAllCategory()
-        
-      }
-    });
-  }
+    // if(deleteQueries(id))
+    {
+      $.ajax({
+        url: `http://localhost:3000/category/${id}`,
+        type: 'DELETE',
+        success: function (result) {
+          $('td').remove();
+          getAllCategory()
+
+        }
+      });
+    }
   }
 }
-function deleteQueries(id)
-{
+function deleteQueries(id) {
   $.ajax({
-    url: "http://localhost:4000/queries?categoryId="+id,
+    url: "http://localhost:3000/queries?categoryId=" + id,
     type: 'DELETE',
     success: function (result) {
       $('td').remove();
-    
-    return true;
-      
+
+      return true;
+
     }
   });
 
 }
 
 function updateCategory(it) {
-  
-   const i = it.value;
 
-   $("#input").attr("value", d[i].name);
+  const i = it.value;
+
+  $("#input").attr("value", d[i].name);
 
   $("#savebtn").click(function () {
     const categoryName = $("#input").val();
-   
+
 
     var data = {
       name: categoryName
@@ -122,13 +120,13 @@ function updateCategory(it) {
     }
 
     $.ajax({
-      url: `http://localhost:4000/category/${d[i].id}`,
+      url: `http://localhost:3000/category/${d[i].id}`,
       type: 'PATCH',
       data: data,
       success: function (result) {
         console.log(result);
         window.location.reload();
-    
+
       }
     });
   });

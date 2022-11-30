@@ -39,11 +39,11 @@
             <li class="nav-item" style="padding: 10px">
               <a class="nav-link text-dark fw-bold" href="../home.html">Home</a>
             </li>
-            <li class="nav-item" style="padding: 11px">
-              <button type="button" class="btn btn-link text-decoration-none text-dark fw-bold" data-bs-toggle="modal" data-bs-target="#myModal">
+            <!-- <li class="nav-item" style="padding: 11px">
+              <button type="button" id="add-query" class="btn btn-link text-decoration-none text-dark fw-bold" data-bs-toggle="modal" data-bs-target="#myModal">
                 Add Question
               </button>
-              </li>
+              </li> -->
               
             <li class="nav-item" style="padding: 10px">
               <a class="nav-link text-dark fw-bold" href="./category.html">Categories</a>
@@ -69,11 +69,15 @@
   
      
 
+<div class="container">
+  <button type="button" id="add-query" class="btn btn-secondary  text-white fw-bold" data-bs-toggle="modal" data-bs-target="#myModal">
+    Add Question
+  </button>
       <table id="table" class="table table-striped">
       
      
             
-            <tr class="thead">
+            <tr class="thead table-dark">
                 <th>Sr.No</th>
                 <th>Questions</th>
                 <th>Action</th>
@@ -82,6 +86,7 @@
   
       
            </table>
+</div>
       <br/>
       
 
@@ -182,6 +187,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Queries</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>

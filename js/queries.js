@@ -17,7 +17,7 @@ $(document).ready(function () {
                 counter:0
             }
            
-          $.post("http://localhost:4000/queries",
+          $.post("http://localhost:3000/queries",
           data,
           function(data,status){
            
@@ -35,7 +35,7 @@ $(document).ready(function () {
 function getAllQueries()
 {
     // FETCHING DATA FROM JSON FILE
-    $.getJSON("http://localhost:4000/queries", 
+    $.getJSON("http://localhost:3000/queries", 
             function (data) {
                 d=data;
         var queries = '';
@@ -54,7 +54,7 @@ function getAllQueries()
                 (++index)+ '</td>';
 
                 queries += '<td><b>' + value.question + '</b><br/><b>Ans</b>: '+value.answer+'<br/><br/></td>';
-                queries+='<td><div class="dropdown dropstart"><button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Select Action</button><ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1"><li><button type="button" class="btn btn-link text-dark text-decoration-none btn-sm" onclick="updateQuestion(this)" value='+key+' data-bs-toggle="modal" data-bs-target="#myModal2"> <b>Change Question</b></button></li><li><button type="button" class="btn btn-link text-dark text-decoration-none btn-sm" onclick="updateAnswer(this)" value='+key+'  data-bs-toggle="modal" data-bs-target="#myModal2"><b>Change Answer</b></button></li><li><button type="button"  class="btn btn-link text-dark text-decoration-none btn-sm" onclick="deleteQuestion(this)" value='+ key+'><b>Delete Question</b></button></li></ul></div></td>';
+                queries+='<td><div class="dropdown dropstart"><button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Select Action</button><ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1"><li><button type="button" class="btn btn-link text-dark text-decoration-none btn-sm" onclick="updateQuestion(this)" value='+key+' data-bs-toggle="modal" data-bs-target="#myModal2"> <b>Change Question</b></button></li><li><button type="button" class="btn btn-link text-dark text-decoration-none btn-sm" onclick="updateAnswer(this)" value='+key+'  data-bs-toggle="modal" data-bs-target="#myModal2"><b>Change Answer</b></button></li><li><button type="button"  class="btn btn-link text-dark text-decoration-none btn-sm" onclick="deleteQuestion(this)" value='+ key+'><b>Delete Question</b></button></li></ul></div></td>';
           
                
                 queries += '</tr><br/>';
@@ -76,7 +76,7 @@ function deleteQuestion(it) {
    const i= it.value;
    id=d[i].id;
    $.ajax({
-       url: `http://localhost:4000/queries/${id}`,
+       url: `http://localhost:3000/queries/${id}`,
        type: 'DELETE',
        success: function (result) {
         $("td").remove();
@@ -107,7 +107,7 @@ function updateQuestion(it) {
           
   
    $.ajax({
-       url: `http://localhost:4000/queries/${data.id}`,
+       url: `http://localhost:3000/queries/${data.id}`,
        type: 'PUT',
        data: data,
        success: function (result) {
@@ -135,7 +135,7 @@ function updateAnswer(it) {
    }
   
    $.ajax({
-       url: `http://localhost:4000/queries/${data.id}`,
+       url: `http://localhost:3000/queries/${data.id}`,
        type: 'PUT',
        data: data,
        success: function (result) {

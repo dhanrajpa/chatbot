@@ -17,7 +17,8 @@ h1 {
 
   .thead
 {
-    background-color: #a5cbea; 
+    background-color: black; 
+    color: white;
 }
 
 
@@ -52,4 +53,10 @@ nav
     {
        background-color: rgb(65, 160, 192);
     }
+
+#new-category{
+  float: right;
+  margin-bottom: 10px;
+}
+
 

@@ -349,11 +349,13 @@
   "NewQueries": [
     {
       "id": 1,
-      "query": "HOw to apply leave?"
+      "query": "How to apply leave?",
+      "email": "akshaypati@cybage.com"
     },
     {
       "id": 2,
-      "query": "HOw to apply 1 day leave?"
+      "query": "Do I have to complete the trainings mentioned in the stipulated time period given in the course?",
+      "email": "akshaypati@cybage.com"
     }
   ],
   "admin": [

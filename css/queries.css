@@ -59,4 +59,8 @@
         {
            background-color: rgb(65, 160, 192);
         }
+     #add-query{
+            float: right;
+            margin-bottom: 10px;
+          }
        

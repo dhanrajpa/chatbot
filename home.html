@@ -75,7 +75,7 @@
 
     <script>
       jQuery(document).ready(function () {
-        urlDataJSON = "http://localhost:4000/category";
+        urlDataJSON = "http://localhost:3000/category";
 
         $.getJSON(urlDataJSON, "", function (data) {
           var dataSlices = [];
@@ -202,6 +202,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Queries</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>

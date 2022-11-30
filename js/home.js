@@ -1,7 +1,7 @@
 let d1 = [];
 const fetchQuetion = async () => {
   $.getJSON(
-    "http://localhost:4000/NewQueries",
+    "http://localhost:3000/NewQueries",
 
     function (data) {
       var queries = "";
@@ -15,6 +15,7 @@ const fetchQuetion = async () => {
         queries += "<tbody><tr>";
         queries += "<td>" + (key + 1) + "</td>";
         queries += "<td>" + value.query + "</td>";
+        queries += "<td>" + value.email + "</td>";
         queries +=
           "<td>" +
           '<button type="button" id="btn"  class="btn btn-danger ml-4" onclick="deleteQuery(this)" value=' +
@@ -45,7 +46,7 @@ async function deleteQuery(it) {
     console.log(i);
     id = d1[i].id;
     await $.ajax({
-      url: `http://localhost:4000/NewQueries/${id}`,
+      url: `http://localhost:3000/NewQueries/${id}`,
       type: "DELETE",
       success: function (result) {
        
