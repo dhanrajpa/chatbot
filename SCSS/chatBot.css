@@ -293,29 +293,15 @@
   font-size: 11px;
 }
 
-.chatbox__footer input input[type="text"]::-webkit-input-placeholder {
-  text-align: center;
-}
-
-.chatbox__footer input input[type="text"]:-ms-input-placeholder {
-  text-align: center;
-}
-
-.chatbox__footer input input[type="text"]::-ms-input-placeholder {
-  text-align: center;
-}
-
-.chatbox__footer input input[type="text"]::placeholder {
-  text-align: center;
-}
-
 .chatbox__footer input::-webkit-input-placeholder {
+  text-align: center;
   overflow: visible;
   font-size: 11px;
   align-self: center;
 }
 
 .chatbox__footer input:-ms-input-placeholder {
+  text-align: center;
   overflow: visible;
   font-size: 11px;
   -ms-flex-item-align: center;
@@ -324,6 +310,7 @@
 }
 
 .chatbox__footer input::-ms-input-placeholder {
+  text-align: center;
   overflow: visible;
   font-size: 11px;
   -ms-flex-item-align: center;
@@ -332,6 +319,7 @@
 }
 
 .chatbox__footer input::placeholder {
+  text-align: center;
   overflow: visible;
   font-size: 11px;
   -ms-flex-item-align: center;

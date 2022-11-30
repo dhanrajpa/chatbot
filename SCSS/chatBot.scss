@@ -265,11 +265,9 @@
             font-size: 11px;
         }
 
-        input[type="text"]::placeholder {
-            text-align: center;
-        }
 
         &::placeholder {
+            text-align: center;
             overflow: visible;
             font-size: 11px;
             align-self: center;
@@ -283,7 +281,6 @@
         width: 60%;
         margin: auto;
         text-align: center;
-
     }
 
     button {

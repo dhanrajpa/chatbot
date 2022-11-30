@@ -68,7 +68,6 @@ const addCounter = async (id, arrayName) => {
     const postData = {
         counter: counter.toString(),
     };
-    // console.log(postData);
 
     console.log(JSON.stringify(postData));
     // Post Query API
@@ -256,32 +255,69 @@ const postQuery = async (e) => {
     console.log("into send");
 
     email = document.getElementById("queryText").value;
+    let errorQuery = document.createElement("span");
+    errorQuery.classList.add("error");
+    errorQuery.id = "errorBody"
+    let errorMsg = document.createElement("p");
+    errorMsg.id = 'query_error'
+    errorMsg.innerHTML = "Enter your email";
+    //append error child 
+    //end
 
-    const postData = {
-        query: query,
-        email: email
-    };
-    // Post Query API
-    const res = await fetch(newQuery,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(postData)
-        })
-    const data = await res.json();
-    e.target.onclick = false;
+    document.getElementById("queryText").after(errorQuery) // append element tag
 
-    let remQueryBox1 = document.getElementById("query-msg-tag")
-    remQueryBox1.remove()
-    let remQueryBox2 = document.getElementById("write-query")
-    remQueryBox2.remove()
+    let check = email === "";
 
-    LastMessage();
+    if (!check) {
 
+        console.log("into send function if ");
+        // let body = document.getElementById("errorBody")
+        // console.log(body);
+        // if (body) {
+        //     body.remove()
+        //     query_error.remove()
+        // }
+
+        const postData = {
+            query: query,
+            email: email
+        };
+        // Post Query API
+        const res = await fetch(newQuery,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(postData)
+            })
+        const data = await res.json();
+
+        e.target.onclick = false;
+
+        let remQueryBox1 = document.getElementById("query-msg-tag")
+        remQueryBox1.remove()
+        let remQueryBox2 = document.getElementById("write-query")
+        remQueryBox2.remove()
+        email = "";
+
+        LastMessage();
+
+    }
+    // if (check) {
+    //     let body = document.querySelector("#errorBody")
+    //     let msg = document.querySelector("#query_error")
+
+
+    //     if (!body.contains(msg)) {
+    //         console.log("into error");
+    //         errorQuery.appendChild(errorMsg);
+    //     }
+
+    //     scrollToBottom('.Chat-container');
+
+    // }
 }
-
 const cancel = (e) => {
     // replyElem(text)
     console.log("into cancel");
@@ -307,6 +343,7 @@ const queryWrite = (e) => {
 
     let input = document.createElement("input");
     input.id = "queryText";
+    input.required = true;
     input.setAttribute("type", "text");
 
     input.setAttribute("placeholder", "write your query");
@@ -332,18 +369,60 @@ const queryWrite = (e) => {
     e.target.onclick = false;
 
     btn_Query.onclick = () => {
+        // error message
+        let errorQuery = document.createElement("span");
+        errorQuery.classList.add("error");
+        errorQuery.id = "errorBody"
+        let errorMsg = document.createElement("p");
+        errorMsg.id = 'query_error'
+        errorMsg.innerHTML = "Enter your query";
+        //append error child 
+        //end
         let input = document.getElementById("queryText");
+
+        input.after(errorQuery) // append element tag
+
         query = input.value;
-        let btnDel = document.getElementById("next-btn");
-        btnDel.remove();
-        input.setAttribute("placeholder", "add your email")
-        let send = document.createElement("button");
-        send.classList.add("btn", "btn-lg", "btn-block");
-        send.setAttribute("type", "button");
-        send.innerHTML = "send";
-        send.onclick = postQuery
-        cancelDiv.appendChild(send)
-        // postQuery(e)
+        let check = query === ""
+        if (!check) {
+            input.value = ""
+
+            console.log("into send function if ");
+            // let body = document.getElementById("errorBody")
+            // console.log(body);
+            // if (body) {
+            //     body.remove()
+            //     query_error.remove()
+            // }
+
+            let btnDel = document.getElementById("next-btn");
+            btnDel.remove();
+            input.setAttribute("placeholder", "add your email");
+
+            let send = document.createElement("button");
+            send.classList.add("btn", "btn-lg", "btn-block");
+            send.setAttribute("type", "button");
+            send.innerHTML = "send";
+            send.onclick = postQuery;
+            cancelDiv.appendChild(send);
+            scrollToBottom('.Chat-container');
+
+        }
+        // if (check) {
+        //     console.log("else");
+        //     let body = document.querySelector("#errorBody")
+        //     let msg = document.querySelector("#query_error")
+
+
+        //     if (!body.contains(msg))
+        //         errorQuery.appendChild(errorMsg);
+
+        //     scrollToBottom('.Chat-container');
+
+
+        // }
+
+
     }
 
     cancelBtn.onclick = cancel
